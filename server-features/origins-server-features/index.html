@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Features - Origins (High Five) | Lineage 2 Reborn</title>
+    
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <meta name="theme-color" content="#100E0D">
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="../../css/reborn_style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/reborn_style2_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/reborn_style_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" type="text/css" media="all">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #100E0D;
+            color: #CCC3BF;
+            font-family: 'Onest', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .origins_cyan {
+            color: #64C7E8 !important;
+        }
+        .origins_gold {
+            color: #FAC459 !important;
+        }
+        .origins_badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        .badge_cyan {
+            background: rgba(100, 199, 232, 0.15);
+            border: 1px solid rgba(100, 199, 232, 0.4);
+            color: #64C7E8;
+        }
+        .badge_gold {
+            background: rgba(250, 196, 89, 0.15);
+            border: 1px solid rgba(250, 196, 89, 0.4);
+            color: #FAC459;
+        }
+        .badge_green {
+            background: rgba(72, 187, 120, 0.15);
+            border: 1px solid rgba(72, 187, 120, 0.4);
+            color: #68D391;
+        }
+        .badge_purple {
+            background: rgba(167, 139, 250, 0.15);
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            color: #C4B5FD;
+        }
+
+        /* Banner Hero Customization */
+        .origins_hero_banner {
+            position: relative;
+            width: 100%;
+            max-width: 1360px;
+            margin: 20px auto 40px auto;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #1C272C 0%, #151A1D 50%, #0F1214 100%);
+            border: 1px solid rgba(100, 199, 232, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(53, 187, 231, 0.12);
+            overflow: hidden;
+            display: flex;
+            padding: 40px;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .origins_hero_banner::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            background-image: url('../../images/bk_origins_right.png');
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: contain;
+            opacity: 0.28;
+            pointer-events: none;
+        }
+        .hero_text_left {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+        .hero_tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .hero_title {
+            font-size: 38px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .hero_desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #A39690;
+            margin-bottom: 24px;
+        }
+        .hero_stats_grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 15px;
+        }
+        .hero_stat_item {
+            background: rgba(38, 33, 30, 0.85);
+            border: 1px solid #3C342F;
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .hero_stat_label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #7D6B62;
+            font-weight: 600;
+        }
+        .hero_stat_val {
+            font-size: 18px;
+            font-weight: 700;
+            color: #64C7E8;
+        }
+
+        /* Nav Pills for Servers */
+        .feat_servers_nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 1360px;
+            margin: 0 auto 20px auto;
+            border-bottom: 1px solid #26211E;
+            padding-bottom: 16px;
+            overflow-x: auto;
+        }
+        .feat_server_tab {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #7D6B62;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #181513;
+            border: 1px solid #26211E;
+            white-space: nowrap;
+        }
+        .feat_server_tab:hover {
+            color: #CCC3BF;
+            border-color: #3C342F;
+        }
+        .feat_server_tab.active {
+            background: linear-gradient(135deg, rgba(53, 187, 231, 0.15) 0%, rgba(31, 37, 39, 0.4) 100%);
+            border: 1px solid #64C7E8;
+            color: #64C7E8;
+            box-shadow: 0 0 15px rgba(100, 199, 232, 0.2);
+        }
+
+        /* Main 2-Column Container */
+        .feat_container {
+            display: flex;
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 20px 80px 20px;
+            box-sizing: border-box;
+            gap: 36px;
+            align-items: flex-start;
+        }
+
+        /* Sticky Sidebar */
+        .feat_sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #181412;
+            border: 1px solid #2D2520;
+            border-radius: 12px;
+            padding: 16px 12px;
+            box-sizing: border-box;
+        }
+        .sidebar_heading {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #FAC459;
+            padding: 6px 12px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #26211E;
+            margin-bottom: 4px;
+        }
+        .sidebar_link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            font-size: 13px;
+            color: #8C7B72;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .sidebar_link:hover {
+            color: #FFFFFF;
+            background: #231C18;
+        }
+        .sidebar_link.active {
+            color: #64C7E8;
+            background: rgba(100, 199, 232, 0.1);
+            font-weight: 600;
+            border-left: 3px solid #64C7E8;
+        }
+        .sidebar_icon {
+            font-size: 15px;
+            width: 18px;
+            text-align: center;
+        }
+
+        /* Content Area */
+        .feat_content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Feature Card Section */
+        .feat_section_card {
+            background: #1C1714;
+            border: 1px solid #2E2621;
+            border-radius: 14px;
+            padding: 28px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            scroll-margin-top: 100px;
+            position: relative;
+        }
+        .feat_section_card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 24px;
+            bottom: 24px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: #64C7E8;
+        }
+        .feat_card_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #2D2520;
+        }
+        .feat_card_title_wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .feat_card_icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(100, 199, 232, 0.12);
+            border: 1px solid rgba(100, 199, 232, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #64C7E8;
+        }
+        .feat_card_title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        .feat_card_subtitle {
+            font-size: 13px;
+            color: #8C7B72;
+            margin: 2px 0 0 0;
+        }
+
+        /* Information Callout Box (div_origin style) */
+        .feat_callout {
+            background: #151A1D;
+            border-left: 3px solid #64C7E8;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 16px 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #B5C6CC;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .feat_callout.gold {
+            background: #231C13;
+            border-left-color: #FAC459;
+            color: #D6C29E;
+        }
+
+        /* 2-Column Info Grid inside Card */
+        .feat_grid_2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        @media (max-width: 900px) {
+            .feat_grid_2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Detail Tables */
+        .feat_table_wrap {
+            border: 1px solid #332A24;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #14100E;
+        }
+        .feat_table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .feat_table th {
+            background: #231D19;
+            color: #FAC459;
+            font-weight: 600;
+            text-align: left;
+            padding: 10px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #332A24;
+        }
+        .feat_table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #231D19;
+            color: #CCC3BF;
+        }
+        .feat_table tr:last-child td {
+            border-bottom: none;
+        }
+        .feat_table tr:nth-child(even) {
+            background: #1A1513;
+        }
+        .feat_table tr:hover {
+            background: #261F1A;
+        }
+        .feat_table .val_highlight {
+            font-weight: 700;
+            color: #64C7E8;
+            text-align: right;
+        }
+        .feat_table .val_gold {
+            font-weight: 700;
+            color: #FAC459;
+            text-align: right;
+        }
+
+        /* Key-Value Rows */
+        .feat_kv_list {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #332A24;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #14100E;
+        }
+        .feat_kv_row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            border-bottom: 1px solid #231D19;
+            font-size: 13px;
+        }
+        .feat_kv_row:nth-child(even) {
+            background: #1A1513;
+        }
+        .feat_kv_row:last-child {
+            border-bottom: none;
+        }
+        .feat_kv_label {
+            color: #CCC3BF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feat_kv_value {
+            font-weight: 600;
+            color: #64C7E8;
+            text-align: right;
+        }
+
+        /* Commands Grid */
+        .cmd_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .cmd_item {
+            background: #14100E;
+            border: 1px solid #332A24;
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: border-color 0.2s;
+        }
+        .cmd_item:hover {
+            border-color: #64C7E8;
+        }
+        .cmd_name {
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: #FAC459;
+        }
+        .cmd_desc {
+            font-size: 12px;
+            color: #A39690;
+            line-height: 1.4;
+        }
+
+        /* Top header and logo styles fallback */
+        .reborn_header_brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        @media (max-width: 1024px) {
+            .feat_container {
+                flex-direction: column;
+            }
+            .feat_sidebar {
+                width: 100%;
+                position: static;
+                top: auto;
+            }
+            .hero_stats_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .origins_hero_banner {
+                padding: 24px;
+            }
+            .origins_hero_banner::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header role="navigation">
+    <div class="bk_header" id="header_content">
+        <div class="full_wrap">
+            <div class="header_wrap">
+                <div class="top_menu_left">
+                    <a href="../../index.html" class="secondary_link_small" aria-label="Home">
+                        <div class="logo_reborn"></div>
+                    </a>
+                    <div class="line_v_20"></div>
+
+                    <a href="../../index.html" class="top_menu_content" style="text-decoration: none; color: inherit;">
+                        <div class="logo_servers"></div>
+                        Servers
+                    </a>
+
+                    <a class="btn_menu_top" href="https://discord.gg/l2reborn" target="_blank" aria-label="Discord">
+                        <div class="logo_community"></div>
+                        Community
+                    </a>
+                    <a href="../../index.html#news" aria-label="News">
+                        <div class="btn_menu_top">
+                            <div class="logo_news"></div>
+                            News
+                        </div>
+                    </a>
+                    <a class="btn_menu_top" href="https://lineage2wiki.org/" target="_blank" aria-label="Wiki">
+                        <div class="logo_wiki"></div>
+                        Wiki
+                    </a>
+                </div>
+
+                <div class="top_menu_right">
+                    <div class="wrap_btn_control">
+                        <a href="../../index.html" class="btn_control_panel">
+                            <div class="icon_user"></div>
+                            Главная сайта
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main style="padding-top: 90px;">
+
+    <!-- SERVER TABS SELECTOR -->
+    <div class="feat_servers_nav">
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Legacy</span>
+            <span class="origins_badge badge_gold">x1 C1</span>
+        </a>
+        <a href="#top" class="feat_server_tab active">
+            <span>Origins</span>
+            <span class="origins_badge badge_cyan">x1 High Five</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Essence Guardian</span>
+            <span class="origins_badge badge_purple">Essence</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Signature</span>
+            <span class="origins_badge badge_gold">x1 IL</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Eternal</span>
+            <span class="origins_badge badge_gold">x10 IL</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Forever</span>
+            <span class="origins_badge badge_green">HF</span>
+        </a>
+    </div>
+
+    <!-- HERO BANNER -->
+    <div class="origins_hero_banner" id="top">
+        <div class="hero_text_left">
+            <div class="hero_tags">
+                <span class="origins_badge badge_cyan">High Five Part 5</span>
+                <span class="origins_badge badge_gold">L2J Eternity Engine (Java 25)</span>
+                <span class="origins_badge badge_green">Бесплатный AutoFarm</span>
+                <span class="origins_badge badge_purple">Auto-VIP Всем</span>
+            </div>
+            <h1 class="hero_title">
+                Origins <span class="origins_cyan">High Five</span> Server Features
+            </h1>
+            <p class="hero_desc">
+                Полное и подробное описание механик, рейтов, кастомных дополнений и систем сервера High Five Part 5 (Protocol 166). Сервер работает на ультрасовременном ядре L2J Eternity с поддержкой современных алгоритмов и высочайшей производительностью.
+            </p>
+            <div class="hero_stats_grid">
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Базовые рейты</span>
+                    <span class="hero_stat_val">x1.0 Classic</span>
+                </div>
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Премиум (PA VIP)</span>
+                    <span class="hero_stat_val">+50% (Auto-Free)</span>
+                </div>
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Безопасная точка</span>
+                    <span class="hero_stat_val">+3 (+4 Full) / Max +20</span>
+                </div>
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Слоты баффов</span>
+                    <span class="hero_stat_val">24 + 12 Dance/Song</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2-COLUMN MAIN CONTENT -->
+    <div class="feat_container">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="feat_sidebar">
+            <div class="sidebar_heading">Разделы информации</div>
+            <a href="#sec-general" class="sidebar_link active">
+                <span class="sidebar_icon">📊</span>
+                <span>Общая информация и рейты</span>
+            </a>
+            <a href="#sec-vitality" class="sidebar_link">
+                <span class="sidebar_icon">✨</span>
+                <span>Энергия и Vitality</span>
+            </a>
+            <a href="#sec-premium" class="sidebar_link">
+                <span class="sidebar_icon">👑</span>
+                <span>Премиум-аккаунт (PA VIP)</span>
+            </a>
+            <a href="#sec-enchant" class="sidebar_link">
+                <span class="sidebar_icon">⚔️</span>
+                <span>Заточка и Атрибуты</span>
+            </a>
+            <a href="#sec-buffs" class="sidebar_link">
+                <span class="sidebar_icon">🛡️</span>
+                <span>Баффы и Геймплей</span>
+            </a>
+            <a href="#sec-autofarm" class="sidebar_link">
+                <span class="sidebar_icon">🤖</span>
+                <span>Система AutoFarm</span>
+            </a>
+            <a href="#sec-gearscore" class="sidebar_link">
+                <span class="sidebar_icon">🏆</span>
+                <span>GearScore и Статуи ТОП-10</span>
+            </a>
+            <a href="#sec-community" class="sidebar_link">
+                <span class="sidebar_icon">📜</span>
+                <span>Community Board (Alt+B)</span>
+            </a>
+            <a href="#sec-custom" class="sidebar_link">
+                <span class="sidebar_icon">💎</span>
+                <span>Кастомный контент и Броши</span>
+            </a>
+            <a href="#sec-olympiad" class="sidebar_link">
+                <span class="sidebar_icon">🏟️</span>
+                <span>Олимпиада и Ивенты</span>
+            </a>
+            <a href="#sec-commands" class="sidebar_link">
+                <span class="sidebar_icon">💬</span>
+                <span>Чат-команды (.cfg, .menu)</span>
+            </a>
+        </aside>
+
+        <!-- SECTIONS CONTENT -->
+        <div class="feat_content">
+
+            <!-- 1. GENERAL & RATES -->
+            <section class="feat_section_card" id="sec-general">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">📊</div>
+                        <div>
+                            <h2 class="feat_card_title">Общие сведения и базовые рейты</h2>
+                            <p class="feat_card_subtitle">Архитектура платформы, протокол и основные множители</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_cyan">x1.0 Platform</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.6; color: #CCC3BF; margin-top: 0;">
+                    Сервер Origins функционирует на базе обновленного ядра <strong>L2J Eternity</strong> с поддержкой <strong>Java 25 (OpenJDK 25.0.2)</strong>. Это обеспечивает безупречный отклик, моментальную геодату и высокую частоту тиков игрового мира без задержек.
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Параметр сервера</th>
+                                    <th style="text-align: right;">Значение</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Хроники</td>
+                                    <td class="val_highlight">High Five Part 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Клиентский протокол</td>
+                                    <td class="val_highlight">166 (HF5)</td>
+                                </tr>
+                                <tr>
+                                    <td>Максимальный уровень</td>
+                                    <td class="val_highlight">85 lvl (100%)</td>
+                                </tr>
+                                <tr>
+                                    <td>Ограничение окон (Dualbox)</td>
+                                    <td class="val_gold">До 6 окон</td>
+                                </tr>
+                                <tr>
+                                    <td>Автолут монстров</td>
+                                    <td class="val_highlight">Включен (.autoloot)</td>
+                                </tr>
+                                <tr>
+                                    <td>Катакомбы / Некрополи</td>
+                                    <td class="val_highlight">Свободный вход 24/7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Игровой рейт</th>
+                                    <th style="text-align: right;">Множитель</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rate EXP / SP (Опыт / Скилл-поинты)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Party EXP / SP (В группе)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Adena (Дроп адены)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Drop Items (Шанс/Количество)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Spoil (Шанс/Количество спойла)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate RaidBoss & GrandBoss Drop</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Quests (EXP / SP / Reward)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Knight Epaulettes (Эполеты)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="feat_callout">
+                    <span>ℹ️</span>
+                    <div>
+                        <strong>Особенности баланса:</strong> Базовый игровой цикл соответствует официальному x1 серверу High Five, но благодаря встроенным системам Vitality, бесплатному VIP-аккаунту и автофарму прокачка персонажа становится комфортной и плавной как для одиночек, так и для конст-пати.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. VITALITY -->
+            <section class="feat_section_card" id="sec-vitality">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">✨</div>
+                        <div>
+                            <h2 class="feat_card_title">Энергия и система Vitality</h2>
+                            <p class="feat_card_subtitle">Множители уровней бодрости, Вестник Невита и Рекомендации</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_gold">До +200% EXP</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.6; color: #CCC3BF; margin-top: 0;">
+                    Система бодрости персонажа (Vitality) полностью активна со всеми механиками High Five Part 5. При активной энергии монстры приносят увеличенный опыт, а шкала восстанавливается во время отдыха в мирных зонах или при получении благословений Невита.
+                </p>
+
+                <div class="feat_table_wrap">
+                    <table class="feat_table">
+                        <thead>
+                            <tr>
+                                <th>Уровень Vitality</th>
+                                <th>Очки энергии</th>
+                                <th>Бонус к EXP/SP</th>
+                                <th style="text-align: right;">Итоговый множитель</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Vitality Level 1</strong></td>
+                                <td>1 - 5,200 очков</td>
+                                <td>+50% к опыту</td>
+                                <td class="val_highlight">x1.50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vitality Level 2</strong></td>
+                                <td>5,201 - 13,000 очков</td>
+                                <td>+100% к опыту</td>
+                                <td class="val_highlight">x2.00</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vitality Level 3</strong></td>
+                                <td>13,001 - 18,200 очков</td>
+                                <td>+150% к опыту</td>
+                                <td class="val_highlight">x2.50</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vitality Level 4</strong></td>
+                                <td>18,201 - 20,000 очков</td>
+                                <td>+200% к опыту</td>
+                                <td class="val_gold">x3.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Вестник Невита (Nevit's Advent Blessing)</span>
+                            <span class="feat_kv_value">Включен (Авто-триггер)</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Песочные часы Невита (Nevit's Hourglass)</span>
+                            <span class="feat_kv_value">Поддерживаются</span>
+                        </div>
+                    </div>
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Бонус рекомендаций (Rec Bonus)</span>
+                            <span class="feat_kv_value">До +50% EXP дополнительно</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Восстановление в оффлайне/городах</span>
+                            <span class="feat_kv_value">Включено</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. PREMIUM ACCOUNT -->
+            <section class="feat_section_card" id="sec-premium">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">👑</div>
+                        <div>
+                            <h2 class="feat_card_title">Премиум-аккаунт (PA / VIP)</h2>
+                            <p class="feat_card_subtitle">Автоматическая бесплатная выдача премиума каждому персонажу</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_green">Auto-Free Tier 1</span>
+                </div>
+
+                <div class="feat_callout gold">
+                    <span>🎁</span>
+                    <div>
+                        <strong>Уникальная настройка Origins:</strong> Параметр <code>AutoGivePremium = True</code> активирован на ядре сервера. Это означает, что <strong>каждый игрок при создании персонажа автоматически получает 1-й уровень Премиум-аккаунта бесплатно!</strong>
+                    </div>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Бонус премиума (PA VIP)</th>
+                                    <th style="text-align: right;">Прибавка</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Опыт и СП (EXP / SP)</td>
+                                    <td class="val_highlight">+50% (x1.50)</td>
+                                </tr>
+                                <tr>
+                                    <td>Дроп предметов (Drop Chance/Count)</td>
+                                    <td class="val_highlight">+30% (x1.30)</td>
+                                </tr>
+                                <tr>
+                                    <td>Спойл предметов (Spoil Rate)</td>
+                                    <td class="val_highlight">+30% (x1.30)</td>
+                                </tr>
+                                <tr>
+                                    <td>Дроп Адены (Adena Amount)</td>
+                                    <td class="val_highlight">+30% (x1.30)</td>
+                                </tr>
+                                <tr>
+                                    <td>Квестовые награды (Quest Rewards)</td>
+                                    <td class="val_highlight">+30% (x1.30)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Крафт и утилити бонусы</th>
+                                    <th style="text-align: right;">Прибавка</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Лимит веса инвентаря (Weight Limit)</td>
+                                    <td class="val_highlight">+50% переносимости</td>
+                                </tr>
+                                <tr>
+                                    <td>Шанс создания вещей (Craft Success)</td>
+                                    <td class="val_highlight">+10% к шансу</td>
+                                </tr>
+                                <tr>
+                                    <td>Создание редких вещей (Masterwork)</td>
+                                    <td class="val_highlight">+3% к шансу MW</td>
+                                </tr>
+                                <tr>
+                                    <td>Шанс модификации (Enchant Bonus)</td>
+                                    <td class="val_gold">+5% к шансу заточки</td>
+                                </tr>
+                                <tr>
+                                    <td>Слоты баффов</td>
+                                    <td class="val_highlight">24 слота</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. ENCHANT & ATTRIBUTE -->
+            <section class="feat_section_card" id="sec-enchant">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">⚔️</div>
+                        <div>
+                            <h2 class="feat_card_title">Заточка и атрибуты экипировки</h2>
+                            <p class="feat_card_subtitle">Шансы свитков модификации оружия, брони и вставки элементов</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_cyan">Safe +3 / Max +20</span>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div>
+                        <h4 style="color: #FAC459; margin: 0 0 10px 0; font-size: 15px;">Точка оружия (Weapons)</h4>
+                        <div class="feat_table_wrap">
+                            <table class="feat_table">
+                                <thead>
+                                    <tr>
+                                        <th>Тип оружия</th>
+                                        <th>Безопасная</th>
+                                        <th>Уровни +3..+14</th>
+                                        <th style="text-align: right;">Уровни +15..+20</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Оружие воина (Fighter)</strong></td>
+                                        <td>+3</td>
+                                        <td class="val_highlight">70%</td>
+                                        <td class="val_gold">35%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Оружие мага (Mage)</strong></td>
+                                        <td>+3</td>
+                                        <td class="val_highlight">40%</td>
+                                        <td class="val_gold">20%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 style="color: #FAC459; margin: 0 0 10px 0; font-size: 15px;">Точка брони и бижутерии (Armor/Jewels)</h4>
+                        <div class="feat_table_wrap">
+                            <table class="feat_table">
+                                <thead>
+                                    <tr>
+                                        <th>Уровень заточки</th>
+                                        <th>Базовый шанс</th>
+                                        <th style="text-align: right;">С Премиумом (+5%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Обычная броня / Цельная (Full-body)</td>
+                                        <td>Безопасная: +3</td>
+                                        <td class="val_highlight">Безопасная: +4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Заточка на +4</td>
+                                        <td>66.67%</td>
+                                        <td class="val_highlight">71.67%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Заточка на +5</td>
+                                        <td>33.34%</td>
+                                        <td class="val_highlight">38.34%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Заточка на +6</td>
+                                        <td>25.00%</td>
+                                        <td class="val_highlight">30.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Заточка выше +10 (до +20)</td>
+                                        <td>Динамически от 20% до 5.56%</td>
+                                        <td class="val_gold">+5% PA бонус</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 style="color: #FAC459; margin: 24px 0 10px 0; font-size: 15px;">Система Атрибутов (Attribute System)</h4>
+                <div class="feat_table_wrap">
+                    <table class="feat_table">
+                        <thead>
+                            <tr>
+                                <th>Предмет атрибута</th>
+                                <th>Лимит в оружии</th>
+                                <th>Лимит в броне (на стихию)</th>
+                                <th style="text-align: right;">Шанс успешной вставки</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Attribute Stone (Камни атрибута)</strong></td>
+                                <td>До 150 атрибута</td>
+                                <td>До 60 атрибута</td>
+                                <td class="val_highlight">50%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Attribute Crystal (Кристаллы атрибута)</strong></td>
+                                <td>До 300 атрибута</td>
+                                <td>До 120 атрибута</td>
+                                <td class="val_highlight">30%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Attribute Jewels (Камни бижутерии)</strong></td>
+                                <td>—</td>
+                                <td>Усиление бижутерии</td>
+                                <td class="val_highlight">20%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Attribute Energy (Энергия стихий)</strong></td>
+                                <td>Максимальные уровни</td>
+                                <td>Максимальные уровни</td>
+                                <td class="val_gold">10%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. BUFFS & GAMEPLAY -->
+            <section class="feat_section_card" id="sec-buffs">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🛡️</div>
+                        <div>
+                            <h2 class="feat_card_title">Баффы, авто-зелья и игровой процесс</h2>
+                            <p class="feat_card_subtitle">Слоты эффектов, автоматические расходники и механики удобства</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_cyan">Auto-ACP Built-in</span>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Базовые слоты баффов</span>
+                            <span class="feat_kv_value">20 слотов</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Слоты с Divine Inspiration и VIP</span>
+                            <span class="feat_kv_value origins_gold">24 слота</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Слоты Dances & Songs (Танцы/Песни)</span>
+                            <span class="feat_kv_value origins_cyan">12 отдельных слотов</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Слоты триггеров (Triggers)</span>
+                            <span class="feat_kv_value origins_cyan">12 отдельных слотов</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Слоты дебаффов (Debuff Bar)</span>
+                            <span class="feat_kv_value">24 отдельных слота</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Границы шанса дебаффов</span>
+                            <span class="feat_kv_value">Min 10% — Max 90%</span>
+                        </div>
+                    </div>
+
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Авто-зелье здоровья (Auto HP Potion)</span>
+                            <span class="feat_kv_value">Порог 70% HP</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Авто-зелье маны (Auto MP Potion)</span>
+                            <span class="feat_kv_value">Порог 60% MP</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Авто-зелье CP (Auto CP Potion)</span>
+                            <span class="feat_kv_value">Порог 90% CP</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Авто-души Камаэлей (Auto Souls)</span>
+                            <span class="feat_kv_value">Порог 10 душ</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Зелья маны (Mana Potions)</span>
+                            <span class="feat_kv_value origins_green">Разрешены на сервере</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Защита от овербаффа</span>
+                            <span class="feat_kv_value">Команда .blockbuff</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feat_callout">
+                    <span>💡</span>
+                    <div>
+                        <strong>Встроенный сервис Auto-Potions (ACP):</strong> Вам не нужны сторонние кликеры и программы. Автоматическое питье HP/MP/CP зелий интегрировано прямо в клиент и сервер — безопасно, надежно и без задержек.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. AUTOFARM -->
+            <section class="feat_section_card" id="sec-autofarm">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🤖</div>
+                        <div>
+                            <h2 class="feat_card_title">Встроенная система AutoFarm</h2>
+                            <p class="feat_card_subtitle">Автоматизация фарма монстров, таргетинга, спойла и реса группы</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_green">AutoFarmIsFree = True</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.6; color: #CCC3BF; margin-top: 0;">
+                    Сервер оснащен умным ботом нового поколения, который доступен <strong>абсолютно бесплатно всем игрокам</strong> без необходимости покупки премиум-статуса или монет удачи.
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Функция автофарма</th>
+                                    <th style="text-align: right;">Описание</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Панель управления</td>
+                                    <td class="val_highlight">10-я панель шорткатов (Shortcut Panel 10)</td>
+                                </tr>
+                                <tr>
+                                    <td>Радиус поиска целей</td>
+                                    <td class="val_highlight">До 2,000 единиц (настраиваемый)</td>
+                                </tr>
+                                <tr>
+                                    <td>Боевые умения</td>
+                                    <td class="val_highlight">Атака, скиллы по откату, дебаффы</td>
+                                </tr>
+                                <tr>
+                                    <td>Спойл и свип</td>
+                                    <td class="val_highlight">Автоматический Spoil и Sweeper</td>
+                                </tr>
+                                <tr>
+                                    <td>Воскрешение группы</td>
+                                    <td class="val_gold">Party Resurrection свитками</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Преимущество</th>
+                                    <th style="text-align: right;">Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Стоимость использования</td>
+                                    <td class="val_green origins_green"><strong>Полностью бесплатно</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Фарм в несколько окон</td>
+                                    <td class="val_highlight">Поддерживается (до 6 окон)</td>
+                                </tr>
+                                <tr>
+                                    <td>Интеллектуальный обход преград</td>
+                                    <td class="val_highlight">Eternity Geodata v2.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Ассист по лидеру пати</td>
+                                    <td class="val_highlight">Включен</td>
+                                </tr>
+                                <tr>
+                                    <td>Подбор дропа во время автофарма</td>
+                                    <td class="val_highlight">Автоматический (.autoloot)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. GEARSCORE & STATUES -->
+            <section class="feat_section_card" id="sec-gearscore">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🏆</div>
+                        <div>
+                            <h2 class="feat_card_title">Система GearScore и Статуи ТОП-10</h2>
+                            <p class="feat_card_subtitle">Оценка экипировки, знаки ранга и персональные статуи победителей</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_gold">Top-10 Hero Statues</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.6; color: #CCC3BF; margin-top: 0;">
+                    Сервер автоматически анализирует силу вашей экипировки (оружие, броня, бижутерия, заточка и атрибут) и формирует единый индекс <strong>GearScore</strong>.
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Статуи ТОП-10 в городах</span>
+                            <span class="feat_kv_value origins_gold">Giran, Aden, Rune</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Бафф от статуи ТОП-10</span>
+                            <span class="feat_kv_value origins_cyan">Уникальный бафф на 12 часов</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Визуальные знаки ранга (Wings)</span>
+                            <span class="feat_kv_value">Крылья над никнеймом персонажа</span>
+                        </div>
+                    </div>
+
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Рейтинг экипировки в Alt+B</span>
+                            <span class="feat_kv_value">Обновление в реальном времени</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Учет редких вещей (Masterwork)</span>
+                            <span class="feat_kv_value">Повышенный коэффициент GS</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Учет эпической бижутерии</span>
+                            <span class="feat_kv_value">Максимальный вклад в ранг</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. COMMUNITY BOARD -->
+            <section class="feat_section_card" id="sec-community">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">📜</div>
+                        <div>
+                            <h2 class="feat_card_title">Community Board (Alt+B)</h2>
+                            <p class="feat_card_subtitle">Баффер со схемами, глобальный телепорт, магазин и сервисы</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_cyan">Full In-Game Board</span>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Раздел Alt+B</th>
+                                    <th style="text-align: right;">Возможности</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Баффер (Buffer)</strong></td>
+                                    <td class="val_highlight">Базовый набор за 10k Adena, сохранение до 4 личных схем</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Телепортер (Teleport)</strong></td>
+                                    <td class="val_highlight">Все города, катакомбы, некрополи, локации прокачки и РБ</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Магазин (Shop)</strong></td>
+                                    <td class="val_highlight">Соски, банки, стрелы, пояса, браслеты, Foundation-товары</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Рубахи Ольфа (Olf's T-shirt)</strong></td>
+                                    <td class="val_highlight">Специальные свитки заточки и обмен</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Сервисы аккаунта</th>
+                                    <th style="text-align: right;">Стоимость</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Дворянство (Noblesse статус)</td>
+                                    <td class="val_gold">50 CoL</td>
+                                </tr>
+                                <tr>
+                                    <td>Геройство (Hero статус на месяц)</td>
+                                    <td class="val_gold">100 CoL</td>
+                                </tr>
+                                <tr>
+                                    <td>Смена основного класса (Main Class Change)</td>
+                                    <td class="val_gold">100 CoL</td>
+                                </tr>
+                                <tr>
+                                    <td>Цвет ника / Цвет титула</td>
+                                    <td class="val_highlight">Доступно в сервисах</td>
+                                </tr>
+                                <tr>
+                                    <td>Оффлайн трейд / Крафт (.offline)</td>
+                                    <td class="val_gold">1 CoL</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. CUSTOM FEATURES & ABILITY -->
+            <section class="feat_section_card" id="sec-custom">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">💎</div>
+                        <div>
+                            <h2 class="feat_card_title">Кастомный контент и развитие персонажа</h2>
+                            <p class="feat_card_subtitle">Драгоценные камни, Древо умений 85 уровня, Доспехи R99 и DressMe</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_purple">Ability Tree & Brooches</span>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Кастомная механика</th>
+                                    <th style="text-align: right;">Параметры</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Броши и драгоценные камни (Brooch)</strong></td>
+                                    <td class="val_highlight">Рубины, Топазы и др. с 1 по 5 уровень</td>
+                                </tr>
+                                <tr>
+                                    <td>Синтез камней (Jewel Compound)</td>
+                                    <td class="val_highlight">Базовый шанс синтеза: 33%</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Древо способностей (Ability Tree)</strong></td>
+                                    <td class="val_gold">Доступно на 85 уровне (пассивные билды)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Сеты доспехов R99</strong></td>
+                                    <td class="val_highlight">Eternal, Seraph, Twilight, Durandia</td>
+                                </tr>
+                                <tr>
+                                    <td>Система внешнего вида (DressMe)</td>
+                                    <td class="val_highlight">Команда <code>.visual</code> (скины без потери статов)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Дополнительные системы</th>
+                                    <th style="text-align: right;">Параметры</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Монстры-чемпионы (Champions)</td>
+                                    <td class="val_highlight">5 уровней силы с повышенным дропом</td>
+                                </tr>
+                                <tr>
+                                    <td>PC Bang Points</td>
+                                    <td class="val_highlight">Начисление каждые 20 мин (для 20+ lvl)</td>
+                                </tr>
+                                <tr>
+                                    <td>Система свадеб (.wedding)</td>
+                                    <td class="val_highlight">Телепорт к супругу и парные бонусы</td>
+                                </tr>
+                                <tr>
+                                    <td>Интерфейс заточки (.enchant)</td>
+                                    <td class="val_highlight">Удобная быстрая модификация предметов</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. OLYMPIAD & EVENTS -->
+            <section class="feat_section_card" id="sec-olympiad">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🏟️</div>
+                        <div>
+                            <h2 class="feat_card_title">Великая Олимпиада и Ивенты</h2>
+                            <p class="feat_card_subtitle">Ежедневные битвы героев, ивент Лепрекон и PvP-турниры</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_gold">Ежемесячный цикл</span>
+                </div>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Параметр Олимпиады</th>
+                                    <th style="text-align: right;">Настройка</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Период геройства</td>
+                                    <td class="val_highlight">1 календарный месяц</td>
+                                </tr>
+                                <tr>
+                                    <td>Время проведения боев</td>
+                                    <td class="val_highlight">Ежедневно с 18:00 (длительность 6 часов)</td>
+                                </tr>
+                                <tr>
+                                    <td>Ограничение боев в неделю</td>
+                                    <td class="val_gold">Максимум 70 матчей</td>
+                                </tr>
+                                <tr>
+                                    <td>Классовые и внеклассовые бои</td>
+                                    <td class="val_highlight">Полная поддержка HF5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Игровые события</th>
+                                    <th style="text-align: right;">Награды</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Ежечасный Лепрекон (Hourly Leprechaun)</strong></td>
+                                    <td class="val_gold">Адена, сундуки и CoL</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hitman (Заказные убийства)</strong></td>
+                                    <td class="val_highlight">PvP-награды за головы врагов</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TvT, CtF, Last Hero</strong></td>
+                                    <td class="val_highlight">Регулярные авто-ивенты с ценными призами</td>
+                                </tr>
+                                <tr>
+                                    <td>High Five Эпические Боссы</td>
+                                    <td class="val_highlight">Antharas, Valakas, Baium, Freya, Beleth</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. CHAT COMMANDS -->
+            <section class="feat_section_card" id="sec-commands">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">💬</div>
+                        <div>
+                            <h2 class="feat_card_title">Полезные голосовые команды (.commands)</h2>
+                            <p class="feat_card_subtitle">Быстрое управление персонажем прямо из чата</p>
+                        </div>
+                    </div>
+                    <span class="origins_badge badge_cyan">In-Game Commands</span>
+                </div>
+
+                <div class="cmd_grid">
+                    <div class="cmd_item">
+                        <span class="cmd_name">.menu / .cfg</span>
+                        <span class="cmd_desc">Главная панель персонажа: автолут, блокировка опыта, анимация и безопасность</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.autoloot</span>
+                        <span class="cmd_desc">Быстрое включение и выключение автоматического подбора предметов</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.offline</span>
+                        <span class="cmd_desc">Посадка персонажа на оффлайн-торговлю или оффлайн-крафт (1 CoL)</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.visual</span>
+                        <span class="cmd_desc">Менеджер DressMe для изменения визуального облика брони и оружия</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.stats</span>
+                        <span class="cmd_desc">Подробная боевая статистика персонажа и текущих характеристик</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.blockbuff</span>
+                        <span class="cmd_desc">Режим блокировки нежелательных баффов от других игроков</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.sellbuff</span>
+                        <span class="cmd_desc">Создание персональной лавки продажи баффов в мирной зоне</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.enchant</span>
+                        <span class="cmd_desc">Быстрый удобный интерфейс модификации экипировки</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.lock</span>
+                        <span class="cmd_desc">Защита аккаунта: привязка персонажа по IP-адресу или HWID компьютера</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.relog</span>
+                        <span class="cmd_desc">Мгновенный перезаход в мир без закрытия игрового клиента</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.promocode</span>
+                        <span class="cmd_desc">Активация бонусных промокодов от администрации проекта</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.repair</span>
+                        <span class="cmd_desc">Восстановление застрявшего персонажа на этом же аккаунте</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+    <div class="footer_content" id="content_footer">
+        <div class="full_wrap">
+            <div class="footer_wrap">
+                <div class="left_footer">
+                    <a href="../../index.html" aria-label="Home"><div class="logo_footer"></div></a>
+                    <div class="text_12_medium_footer txt_brown4">© 2026 Game Project Reborn</div>
+                </div>
+                <div class="center_footer">
+                    <div class="content_link_footer_desktop">
+                        <div class="text_12_bold_menu">Навигация:</div>
+                        <a href="../../index.html" class="secondary_link_small">Главная страница</a>
+                        <a href="../../index.html#news" class="secondary_link_small">Новости</a>
+                        <a href="https://discord.gg/l2reborn" target="_blank" class="secondary_link_small">Сообщество Discord</a>
+                        <a href="https://lineage2wiki.org/" target="_blank" class="secondary_link_small">База знаний Wiki</a>
+                        <div class="line_v_15_footer"></div>
+                        <div class="text_12_bold_menu">Серверы:</div>
+                        <a href="../../index.html" class="secondary_link_small">Legacy x1</a>
+                        <a href="index.html" class="secondary_link_small origins_cyan" style="font-weight: 700;">Origins x1 High Five</a>
+                        <a href="../../index.html" class="secondary_link_small">Essence Guardian</a>
+                        <a href="../../index.html" class="secondary_link_small">Signature x1</a>
+                        <a href="../../index.html" class="secondary_link_small">Eternal x10</a>
+                        <a href="../../index.html" class="secondary_link_small">Forever</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPT: ACTIVE SIDEBAR ON SCROLL -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('.feat_section_card');
+        const navLinks = document.querySelectorAll('.sidebar_link');
+
+        window.addEventListener('scroll', function () {
+            let current = '';
+            sections.forEach(function (section) {
+                const sectionTop = section.offsetTop - 140;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(function (link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
