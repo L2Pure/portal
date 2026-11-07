@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origins - High Five Part 5 | Lineage 2 Reborn</title>
+    
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <meta name="theme-color" content="#100E0D">
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="../css/reborn_style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/reborn_style2_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/reborn_style_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/public.css" type="text/css" media="all">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #100E0D;
+            color: #CCC3BF;
+            font-family: 'Onest', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Scoped Enhancements for Origins Landing */
+        .origins_page_wrap {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .hero_origins_section {
+            position: relative;
+            min-height: 750px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 100px;
+        }
+        .hero_origins_bg_left {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            width: 550px;
+            height: 750px;
+            background-image: url('../images/bk_origins_left.png');
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.85;
+        }
+        .hero_origins_bg_right {
+            position: absolute;
+            right: 0;
+            top: 20px;
+            width: 550px;
+            height: 750px;
+            background-image: url('../images/bk_origins_right.png');
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.85;
+        }
+        .hero_origins_center {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 640px;
+            margin-top: 60px;
+            padding: 0 20px;
+        }
+        .hero_origins_badge_bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .origins_badge_pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: rgba(100, 199, 232, 0.12);
+            border: 1px solid rgba(100, 199, 232, 0.35);
+            color: #64C7E8;
+        }
+        .hero_origins_title {
+            font-size: 76px;
+            font-weight: 800;
+            line-height: 1.05;
+            color: #FFFFFF;
+            margin: 0 0 10px 0;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8), 0 0 35px rgba(100, 199, 232, 0.35);
+        }
+        .hero_origins_rate_num {
+            color: #64C7E8;
+        }
+        .hero_origins_subtitle {
+            font-size: 22px;
+            font-weight: 500;
+            color: #7E8D92;
+            margin: 0 0 16px 0;
+            letter-spacing: 0.5px;
+        }
+        .hero_origins_desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #B3A59E;
+            max-width: 580px;
+            margin: 0 0 32px 0;
+        }
+        .hero_origins_cta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 10;
+        }
+        .btn_cta_play {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: 48px;
+            padding: 0 32px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3E95B2 0%, #2A738C 100%);
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(53, 187, 231, 0.35);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(100, 199, 232, 0.4);
+        }
+        .btn_cta_play:hover {
+            background: linear-gradient(135deg, #47B0D4 0%, #3598B8 100%);
+            box-shadow: 0 6px 30px rgba(53, 187, 231, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn_cta_feat {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: 48px;
+            padding: 0 28px;
+            border-radius: 12px;
+            background: rgba(38, 33, 30, 0.8);
+            border: 1px solid #7D6B62;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn_cta_feat:hover {
+            border-color: #64C7E8;
+            color: #64C7E8;
+            background: rgba(100, 199, 232, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Server Specs Quick Bar */
+        .specs_bar_wrap {
+            max-width: 1360px;
+            margin: 40px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .spec_card {
+            border-radius: 12px;
+            background: linear-gradient(90deg, rgba(99, 69, 15, 0.4) 0%, rgba(46, 60, 66, 0.5) 100%);
+            padding: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .spec_card_inner {
+            background: linear-gradient(84deg, #1F2426 1.85%, #232C31 41.71%);
+            border-radius: 11px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: calc(100% - 36px);
+        }
+        .spec_icon {
+            font-size: 28px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(100, 199, 232, 0.15);
+            border: 1px solid rgba(100, 199, 232, 0.3);
+            color: #64C7E8;
+            flex-shrink: 0;
+        }
+        .spec_title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 4px 0;
+        }
+        .spec_desc {
+            font-size: 12px;
+            color: #7E8D92;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Grinding Banner */
+        .grinding_banner_wrap {
+            max-width: 1360px;
+            margin: 60px auto 40px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+        .grinding_banner_card {
+            position: relative;
+            min-height: 420px;
+            border-radius: 16px;
+            background-image: url('../images/bk2_origins2.png');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            border: 1px solid rgba(100, 199, 232, 0.25);
+            display: flex;
+            align-items: center;
+            padding: 48px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+        .grinding_banner_card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(16, 14, 13, 0.95) 0%, rgba(16, 14, 13, 0.75) 50%, rgba(16, 14, 13, 0.2) 100%);
+            pointer-events: none;
+        }
+        .grinding_content_left {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        .grinding_badge {
+            color: #FAC459;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .grinding_title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFFFFF;
+            line-height: 1.25;
+            margin: 0 0 16px 0;
+        }
+        .grinding_text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #B3A59E;
+            margin: 0 0 28px 0;
+        }
+
+        /* Features Cards Grid */
+        .origins_features_section {
+            max-width: 1360px;
+            margin: 60px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+        .features_section_head {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .features_section_head h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin: 0 0 10px 0;
+        }
+        .features_section_head p {
+            font-size: 16px;
+            color: #7E8D92;
+            margin: 0;
+        }
+        .origins_cards_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature_glow_card {
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(46, 60, 66, 0.6) 0%, rgba(31, 37, 39, 0.8) 100%);
+            border: 1px solid rgba(100, 199, 232, 0.2);
+            padding: 28px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature_glow_card:hover {
+            border-color: #64C7E8;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(53, 187, 231, 0.25);
+            background: linear-gradient(135deg, rgba(53, 187, 231, 0.15) 0%, rgba(31, 37, 39, 0.95) 100%);
+        }
+        .feature_glow_card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #64C7E8, transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .feature_glow_card:hover::before {
+            opacity: 1;
+        }
+        .card_top_icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        .card_title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 10px 0;
+        }
+        .card_desc {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #A39690;
+            margin: 0 0 16px 0;
+            flex-grow: 1;
+        }
+        .card_link_more {
+            font-size: 13px;
+            font-weight: 600;
+            color: #64C7E8;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s ease;
+        }
+        .feature_glow_card:hover .card_link_more {
+            gap: 10px;
+            color: #FAC459;
+        }
+
+        /* Starter Gift Box Section */
+        .starter_banner_wrap {
+            max-width: 1360px;
+            margin: 60px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+        .starter_banner_card {
+            position: relative;
+            min-height: 380px;
+            border-radius: 16px;
+            background-image: url('../images/bk4_2_origins.png');
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+            border: 1px solid rgba(100, 199, 232, 0.25);
+            display: flex;
+            align-items: center;
+            padding: 48px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+        .starter_gift_img {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 480px;
+            height: 380px;
+            background-image: url('../images/gift2_origins.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            pointer-events: none;
+        }
+
+        /* Join / Download Steps Section */
+        .join_steps_section {
+            background: linear-gradient(180deg, #1F2426 0%, #15110F 100%);
+            border-top: 1px solid rgba(100, 199, 232, 0.2);
+            padding: 80px 24px;
+            box-sizing: border-box;
+        }
+        .join_steps_container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .join_steps_header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .join_steps_header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin: 0 0 12px 0;
+        }
+        .join_steps_header p {
+            font-size: 16px;
+            color: #7E8D92;
+            margin: 0;
+        }
+        .steps_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .step_item {
+            background: #181513;
+            border: 1px solid #332A24;
+            border-radius: 14px;
+            padding: 32px 24px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            position: relative;
+        }
+        .step_number {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(100, 199, 232, 0.15);
+            border: 2px solid #64C7E8;
+            color: #64C7E8;
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step_title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        .step_desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #8C7B72;
+            margin: 0;
+        }
+        .join_cta_bar {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .specs_bar_wrap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .origins_cards_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero_origins_bg_left, .hero_origins_bg_right {
+                opacity: 0.3;
+                width: 320px;
+            }
+            .starter_gift_img {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero_origins_title {
+                font-size: 48px;
+            }
+            .specs_bar_wrap {
+                grid-template-columns: 1fr;
+            }
+            .origins_cards_grid {
+                grid-template-columns: 1fr;
+            }
+            .steps_grid {
+                grid-template-columns: 1fr;
+            }
+            .hero_origins_bg_left, .hero_origins_bg_right {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="origins-landing">
+
+<!-- HEADER -->
+<header role="navigation">
+    <div class="bk_header" id="header_content">
+        <div class="full_wrap">
+            <div class="header_wrap">
+                <div class="top_menu_left">
+                    <a href="../index.html" class="secondary_link_small" aria-label="Home">
+                        <div class="logo_reborn"></div>
+                    </a>
+                    <div class="line_v_20"></div>
+
+                    <a href="../index.html" class="top_menu_content" style="text-decoration: none; color: inherit;">
+                        <div class="logo_servers"></div>
+                        Servers
+                    </a>
+
+                    <a class="btn_menu_top" href="https://discord.gg/l2reborn" target="_blank" aria-label="Discord">
+                        <div class="logo_community"></div>
+                        Community
+                    </a>
+                    <a href="../index.html#news" aria-label="News">
+                        <div class="btn_menu_top">
+                            <div class="logo_news"></div>
+                            News
+                        </div>
+                    </a>
+                    <a class="btn_menu_top" href="https://lineage2wiki.org/" target="_blank" aria-label="Wiki">
+                        <div class="logo_wiki"></div>
+                        Wiki
+                    </a>
+                </div>
+
+                <div class="top_menu_right" style="display: flex; gap: 12px; align-items: center;">
+                    <a class="btn_download" href="../L2.launcher.7z" download="L2.launcher.7z" style="text-decoration: none;" aria-label="Скачать лаунчер">
+                        <div class="icon_dld"></div>
+                        Скачать лаунчер
+                    </a>
+                    <div class="wrap_btn_control">
+                        <a href="../index.html" class="btn_control_panel">
+                            <div class="icon_user"></div>
+                            Главная сайта
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main style="padding-top: 75px;">
+
+    <!-- HERO SECTION -->
+    <section class="hero_origins_section">
+        <!-- Background Characters Left & Right -->
+        <div class="hero_origins_bg_left"></div>
+        <div class="hero_origins_bg_right"></div>
+
+        <!-- Center Content -->
+        <div class="hero_origins_center">
+            <div class="hero_origins_badge_bar">
+                <div class="logo2_origins" title="High Five Part 5"></div>
+                <div class="line_v_origins"></div>
+                <div class="icon3_server_origins" title="Origins Server"></div>
+            </div>
+
+            <div class="origins_badge_pill">
+                <span>⚡ High Five Part 5 • Protocol 166</span>
+            </div>
+
+            <h1 class="hero_origins_title">
+                Origins <span class="hero_origins_rate_num">x1</span>
+            </h1>
+
+            <div class="hero_origins_subtitle">
+                The True High Five Journey
+            </div>
+
+            <p class="hero_origins_desc">
+                Полноценное погружение в хроники High Five Part 5 на базе новейшей платформы L2J Eternity (Java 25). Настоящий долговечный сервер без вайпов, с классическими рейтами x1, бесплатным встроенным автофармом и авто-VIP для каждого игрока.
+            </p>
+
+            <div class="hero_origins_cta">
+                <a href="../L2.launcher.7z" download="L2.launcher.7z" class="btn_cta_play" aria-label="Скачать апдейтер">
+                    <div class="icon_win"></div>
+                    Скачать лаунчер (L2.launcher.7z)
+                </a>
+                <a href="../server-features/origins-server-features/index.html" class="btn_cta_feat" aria-label="Server Features">
+                    <div class="icon2_feat"></div>
+                    Server Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVER SPECS QUICK BAR -->
+    <section class="specs_bar_wrap">
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">⚙️</div>
+                <div>
+                    <div class="spec_title">Движок и протокол</div>
+                    <p class="spec_desc">L2J Eternity на Java 25 (OpenJDK 25.0.2), клиентский протокол 166 (HF5)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">📈</div>
+                <div>
+                    <div class="spec_title">Рейты x1.0 Classic</div>
+                    <p class="spec_desc">EXP, SP, Adena, Drop, Spoil x1.0 с полной поддержкой системы Vitality (до +200%)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">🤖</div>
+                <div>
+                    <div class="spec_title">Бесплатный AutoFarm</div>
+                    <p class="spec_desc">Встроенный умный помощник фарма монстров, спойла и реса группы для всех игроков</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">👑</div>
+                <div>
+                    <div class="spec_title">VIP Tier 1 бесплатно</div>
+                    <p class="spec_desc">Автовыдача Премиум-аккаунта: EXP/SP +50%, Drop/Spoil +30%, +50% вес, 24 бафф-слота</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GRINDING & PROGRESSION BANNER -->
+    <section class="grinding_banner_wrap">
+        <div class="grinding_banner_card">
+            <div class="grinding_content_left">
+                <div class="grinding_badge">
+                    <span>⚔️ Настоящий мир High Five</span>
+                </div>
+                <h2 class="grinding_title">
+                    Enjoy every chronicle from Hellbound to High Five
+                </h2>
+                <p class="grinding_text">
+                    Сервер без вайпов, где каждое достижение имеет ценность. Сбалансированная экономика, свободный доступ в катакомбы и некрополи 24/7, встроенные авто-зелья (HP/MP/CP), активная Олимпиада и масштабные битвы за эпических боссов.
+                </p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="../server-features/origins-server-features/index.html" class="btn_cta_play" style="background: #3e95b2;">
+                        Подробное описание сервера (Features)
+                    </a>
+                    <a href="../L2.launcher.7z" download="L2.launcher.7z" class="btn_cta_feat">
+                        Скачать клиент
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES 6-CARDS GRID -->
+    <section class="origins_features_section">
+        <div class="features_section_head">
+            <h2>Ключевые особенности Origins</h2>
+            <p>Гармоничное сочетание классического хардкора и современных систем комфорта</p>
+        </div>
+
+        <div class="origins_cards_grid">
+            <!-- Card 1 -->
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">📊</div>
+                    <h3 class="card_title">Рейты x1 и Энергия Vitality</h3>
+                    <p class="card_desc">
+                        Честные классические рейты х1. Система Vitality дает до +200% бонуса к опыту на 4 уровне энергии. Активны благословения Вестника Невита и бонус рекомендаций.
+                    </p>
+                </div>
+                <a href="../server-features/origins-server-features/index.html#sec-vitality" class="card_link_more">
+                    Подробнее о рейтах →
+                </a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">🤖</div>
+                    <h3 class="card_title">Встроенный бесплатный AutoFarm</h3>
+                    <p class="card_desc">
+                        Умный бот автофарма встроен прямо в игровой клиент (`AutoFarmIsFree = True`). Управление через 10-ю панель, радиус до 2000, спойл и воскрешение членов группы.
+                    </p>
+                </div>
+                <a href="../server-features/origins-server-features/index.html#sec-autofarm" class="card_link_more">
+                    Настройки автофарма →
+                </a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">🎁</div>
+                    <h3 class="card_title">Автоматический VIP всем</h3>
+                    <p class="card_desc">
+                        Каждый персонаж при создании получает 1-й уровень Премиум-аккаунта бесплатно: +50% EXP/SP, +30% дроп и спойл, +10% шанс крафта, +5% к заточке и 24 слота баффов.
+                    </p>
+                </div>
+                <a href="../server-features/origins-server-features/index.html#sec-premium" class="card_link_more">
+                    Бонусы премиума →
+                </a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">⚔️</div>
+                    <h3 class="card_title">Заточка и Атрибуты</h3>
+                    <p class="card_desc">
+                        Безопасная модификация +3 (+4 для цельной брони), максимальная +20. Прозрачные шансы свитков и камней атрибута (50% до 150/60, кристаллы 30% до 300/120).
+                    </p>
+                </div>
+                <a href="../server-features/origins-server-features/index.html#sec-enchant" class="card_link_more">
+                    Таблица шансов заточки →
+                </a>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">📜</div>
+                    <h3 class="card_title">Community Board (Alt+B)</h3>
+                    <p class="card_desc">
+                        Удобный баффер за адену с сохранением личных профилей, глобальный телепорт по локациям и РБ, магазин расходников, обмен рубах Ольфа и сервисы персонажа.
+                    </p>
+                </div>
+                <a href="../server-features/origins-server-features/index.html#sec-community" class="card_link_more">
+                    Функционал Alt+B →
+                </a>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">💎</div>
+                    <h3 class="card_title">GearScore, Броши и Древо умений</h3>
+                    <p class="card_desc">
+                        Динамический GearScore со статуями ТОП-10 в городах и 12-часовым баффом, система синтеза брошей 1-5 ур., Древо умений на 85 уровне и визуальные образы DressMe.
+                    </p>
+                </div>
+                <a href="../server-features/origins-server-features/index.html#sec-custom" class="card_link_more">
+                    Кастомный контент →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STARTER GIFT PACK BANNER -->
+    <section class="starter_banner_wrap">
+        <div class="starter_banner_card">
+            <div style="position: relative; z-index: 2; max-width: 580px;">
+                <div class="grinding_badge">
+                    <span>🎁 Подарки новичкам</span>
+                </div>
+                <h2 style="font-size: 34px; font-weight: 800; color: #FFFFFF; line-height: 1.25; margin: 0 0 16px 0;">
+                    Начните своё приключение на Origins
+                </h2>
+                <p style="font-size: 15px; line-height: 1.6; color: #B3A59E; margin: 0 0 28px 0;">
+                    Удобный лаунчер сам скачает и проверит все необходимые клиентские файлы. Заходите в игру, создавайте персонажа и наслаждайтесь легендарными хрониками High Five!
+                </p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <a href="../L2.launcher.7z" download="L2.launcher.7z" class="btn_cta_play">
+                        <div class="icon_win"></div>
+                        Скачать L2.launcher.7z
+                    </a>
+                </div>
+            </div>
+            <div class="starter_gift_img"></div>
+        </div>
+    </section>
+
+    <!-- 3 EASY STEPS TO JOIN -->
+    <section class="join_steps_section">
+        <div class="join_steps_container">
+            <div class="join_steps_header">
+                <h2>Как начать играть за 3 простых шага</h2>
+                <p>Быстрый старт без долгой регистрации</p>
+            </div>
+
+            <div class="steps_grid">
+                <div class="step_item">
+                    <div class="step_number">1</div>
+                    <h3 class="step_title">Скачайте архив лаунчера</h3>
+                    <p class="step_desc">
+                        Загрузите архив <strong>L2.launcher.7z</strong> и распакуйте его в чистую папку с клиентом Lineage 2 High Five или в любую отдельную папку.
+                    </p>
+                </div>
+
+                <div class="step_item">
+                    <div class="step_number">2</div>
+                    <h3 class="step_title">Запустите апдейтер</h3>
+                    <p class="step_desc">
+                        Откройте <code>L2.launcher.exe</code>. Лаунчер автоматически загрузит и обновит все актуальные файлы патча, геодаты и защиты сервера.
+                    </p>
+                </div>
+
+                <div class="step_item">
+                    <div class="step_number">3</div>
+                    <h3 class="step_title">Войдите в игру</h3>
+                    <p class="step_desc">
+                        Нажмите «Start» в лаунчере. Регистрация аккаунта происходит автоматически при первом вводе логина и пароля в окне входа!
+                    </p>
+                </div>
+            </div>
+
+            <div class="join_cta_bar">
+                <a href="../L2.launcher.7z" download="L2.launcher.7z" class="btn_cta_play" style="height: 52px; font-size: 17px; padding: 0 40px;">
+                    <div class="icon_win"></div>
+                    Скачать апдейтер (L2.launcher.7z)
+                </a>
+                <a href="../server-features/origins-server-features/index.html" class="btn_cta_feat" style="height: 52px; font-size: 17px;">
+                    Полный справочник сервера
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+    <div class="footer_content" id="content_footer">
+        <div class="full_wrap">
+            <div class="footer_wrap">
+                <div class="left_footer">
+                    <a href="../index.html" aria-label="Home"><div class="logo_footer"></div></a>
+                    <div class="text_12_medium_footer txt_brown4">© 2026 Game Project Reborn</div>
+                </div>
+                <div class="center_footer">
+                    <div class="content_link_footer_desktop">
+                        <div class="text_12_bold_menu">Навигация:</div>
+                        <a href="../index.html" class="secondary_link_small">Главная страница</a>
+                        <a href="../L2.launcher.7z" download="L2.launcher.7z" class="secondary_link_small" style="color: #FAC459; font-weight: 600;">Скачать лаунчер (L2.launcher.7z)</a>
+                        <a href="../server-features/origins-server-features/index.html" class="secondary_link_small">Server Features</a>
+                        <a href="../index.html#news" class="secondary_link_small">Новости</a>
+                        <a href="https://discord.gg/l2reborn" target="_blank" class="secondary_link_small">Сообщество Discord</a>
+                        <a href="https://lineage2wiki.org/" target="_blank" class="secondary_link_small">База знаний Wiki</a>
+                        <div class="line_v_15_footer"></div>
+                        <div class="text_12_bold_menu">Серверы:</div>
+                        <a href="../index.html" class="secondary_link_small">Legacy x1</a>
+                        <a href="index.html" class="secondary_link_small" style="color: #64C7E8; font-weight: 700;">Origins x1 High Five</a>
+                        <a href="../index.html" class="secondary_link_small">Essence Guardian</a>
+                        <a href="../index.html" class="secondary_link_small">Signature x1</a>
+                        <a href="../index.html" class="secondary_link_small">Eternal x10</a>
+                        <a href="../index.html" class="secondary_link_small">Forever</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
