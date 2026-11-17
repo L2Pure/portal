@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy x1 — Chronicle 1: Harbingers of War | Lineage 2 Reborn</title>
+    
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <meta name="theme-color" content="#100E0D">
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="../css/reborn_style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/reborn_style2_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/reborn_style_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../css/public.css" type="text/css" media="all">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #100E0D;
+            color: #CCC3BF;
+            font-family: 'Onest', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Scoped Enhancements for Legacy Landing */
+        .legacy_page_wrap {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .hero_legacy_section {
+            position: relative;
+            min-height: 750px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 100px;
+        }
+        .hero_legacy_bg_left {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            width: 520px;
+            height: 750px;
+            background-image: url('../images/bk_legacy.png');
+            background-repeat: no-repeat;
+            background-position: left top;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.65;
+        }
+        .hero_legacy_bg_right {
+            position: absolute;
+            right: 0;
+            top: 20px;
+            width: 520px;
+            height: 750px;
+            background-image: url('../images/legacy1.png');
+            background-repeat: no-repeat;
+            background-position: right top;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.75;
+        }
+        .hero_legacy_content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .legacy_hero_badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: rgba(250, 196, 89, 0.12);
+            border: 1px solid rgba(250, 196, 89, 0.35);
+            color: #FAC459;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero_legacy_title {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #FFFFFF;
+            margin: 0 0 12px 0;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+        .hero_legacy_title span {
+            background: linear-gradient(135deg, #FAC459 0%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero_legacy_subtitle {
+            font-size: 20px;
+            font-weight: 500;
+            color: #D6C29E;
+            margin: 0 0 16px 0;
+            letter-spacing: 0.5px;
+        }
+        .hero_legacy_desc {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #B3A59E;
+            max-width: 640px;
+            margin: 0 0 32px 0;
+        }
+        .hero_legacy_cta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 10;
+        }
+        .btn_cta_play {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: 48px;
+            padding: 0 32px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #FAC459 0%, #D4AC0D 100%);
+            color: #100E0D;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(250, 196, 89, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(250, 196, 89, 0.6);
+        }
+        .btn_cta_play:hover {
+            background: linear-gradient(135deg, #FDE68A 0%, #FAC459 100%);
+            box-shadow: 0 6px 30px rgba(250, 196, 89, 0.65);
+            transform: translateY(-2px);
+        }
+        .btn_cta_feat {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            height: 48px;
+            padding: 0 28px;
+            border-radius: 12px;
+            background: rgba(38, 30, 24, 0.85);
+            border: 1px solid #7D6B62;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn_cta_feat:hover {
+            border-color: #FAC459;
+            color: #FAC459;
+            background: rgba(250, 196, 89, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Server Specs Quick Bar */
+        .specs_bar_wrap {
+            max-width: 1360px;
+            margin: 40px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .spec_card {
+            border-radius: 12px;
+            background: linear-gradient(90deg, rgba(250, 196, 89, 0.45) 0%, rgba(54, 42, 32, 0.5) 100%);
+            padding: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        .spec_card_inner {
+            background: linear-gradient(84deg, #1E1712 1.85%, #251E18 41.71%);
+            border-radius: 11px;
+            padding: 18px 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            height: calc(100% - 36px);
+        }
+        .spec_icon {
+            font-size: 28px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(250, 196, 89, 0.15);
+            border: 1px solid rgba(250, 196, 89, 0.35);
+            color: #FAC459;
+            flex-shrink: 0;
+        }
+        .spec_title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 4px 0;
+        }
+        .spec_desc {
+            font-size: 12px;
+            color: #A39690;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* Features Cards Grid */
+        .legacy_features_section {
+            max-width: 1360px;
+            margin: 60px auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+        .features_section_head {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .features_section_head h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin: 0 0 10px 0;
+        }
+        .features_section_head p {
+            font-size: 16px;
+            color: #A39690;
+            margin: 0;
+        }
+        .legacy_cards_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .feature_glow_card {
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(38, 30, 24, 0.8) 0%, rgba(24, 19, 15, 0.95) 100%);
+            border: 1px solid rgba(250, 196, 89, 0.25);
+            padding: 28px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 240px;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature_glow_card:hover {
+            border-color: #FAC459;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(250, 196, 89, 0.25);
+            background: linear-gradient(135deg, rgba(250, 196, 89, 0.15) 0%, rgba(31, 24, 18, 0.95) 100%);
+        }
+        .feature_glow_card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FAC459, transparent);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+        .feature_glow_card:hover::before {
+            opacity: 1;
+        }
+        .card_top_icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+        .card_title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 10px 0;
+        }
+        .card_desc {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #A39690;
+            margin: 0 0 16px 0;
+            flex-grow: 1;
+        }
+        .card_link_more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #FAC459;
+            text-decoration: none;
+            transition: gap 0.2s;
+        }
+        .card_link_more:hover {
+            gap: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .specs_bar_wrap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .legacy_cards_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero_legacy_bg_left, .hero_legacy_bg_right {
+                opacity: 0.25;
+            }
+        }
+        @media (max-width: 680px) {
+            .hero_legacy_title {
+                font-size: 36px;
+            }
+            .specs_bar_wrap {
+                grid-template-columns: 1fr;
+            }
+            .legacy_cards_grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header role="navigation">
+    <div class="bk_header" id="header_content">
+        <div class="full_wrap">
+            <div class="header_wrap">
+                <div class="top_menu_left">
+                    <a href="../index.html" class="secondary_link_small" aria-label="Home">
+                        <div class="logo_reborn"></div>
+                    </a>
+                    <div class="line_v_20"></div>
+
+                    <a href="../index.html" class="top_menu_content" style="text-decoration: none; color: inherit;">
+                        <div class="logo_servers"></div>
+                        Servers
+                    </a>
+
+                    <a class="btn_menu_top" href="https://discord.gg/l2reborn" target="_blank" aria-label="Discord">
+                        <div class="logo_community"></div>
+                        Community
+                    </a>
+                    <a href="../index.html#news" aria-label="News">
+                        <div class="btn_menu_top">
+                            <div class="logo_news"></div>
+                            News
+                        </div>
+                    </a>
+                    <a class="btn_menu_top" href="https://lineage2wiki.org/" target="_blank" aria-label="Wiki">
+                        <div class="logo_wiki"></div>
+                        Wiki
+                    </a>
+                </div>
+
+                <div class="top_menu_right" style="display: flex; gap: 12px; align-items: center;">
+                    <a class="btn_download" href="../L2.launcher.7z" download="L2.launcher.7z" style="text-decoration: none;" aria-label="Скачать лаунчер">
+                        <div class="icon_dld"></div>
+                        Скачать лаунчер
+                    </a>
+                    <div class="wrap_btn_control">
+                        <a href="../index.html" class="btn_control_panel">
+                            <div class="icon_user"></div>
+                            Главная сайта
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="legacy_page_wrap">
+
+    <!-- HERO SECTION -->
+    <section class="hero_legacy_section">
+        <div class="hero_legacy_bg_left"></div>
+        <div class="hero_legacy_bg_right"></div>
+
+        <div class="hero_legacy_content">
+            <div class="legacy_hero_badge">
+                <span>⚔️</span>
+                <span>Chronicle 1: Harbingers of War • Pure x1.0</span>
+            </div>
+            <h1 class="hero_legacy_title">
+                Legacy <span>x1 Hardcore</span>
+            </h1>
+            <p class="hero_legacy_subtitle">
+                Аутентичный мир C1 PTS на ультрасовременном 3D-движке L2-Unity
+            </p>
+            <p class="hero_legacy_desc">
+                Легендарный опыт исследования неизведанного Адена. Настоящая командная игра без оконных бафферов, строгое правило 1 ПК в сутки против драйверов, оригинальные формулы NCSoft 2004 года и революционная 3D-физика Shnok GeoEngine.
+            </p>
+            <div class="hero_legacy_cta">
+                <a href="../L2.launcher.7z" download="L2.launcher.7z" class="btn_cta_play">
+                    <span>⚡</span>
+                    <span>Скачать и начать играть</span>
+                </a>
+                <a href="../server-features/legacy-server-features/index.html" class="btn_cta_feat">
+                    <span>📖</span>
+                    <span>Характеристики сервера</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECS QUICK BAR -->
+    <div class="specs_bar_wrap">
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">📜</div>
+                <div>
+                    <div class="spec_title">Chronicle 1 PTS</div>
+                    <div class="spec_desc">Точный баланс мобов и скиллов Master Toma</div>
+                </div>
+            </div>
+        </div>
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">⚙️</div>
+                <div>
+                    <div class="spec_title">L2-Unity 3D Engine</div>
+                    <div class="spec_desc">Высокий FPS, поддержка 4K и плавная анимация</div>
+                </div>
+            </div>
+        </div>
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">🛡️</div>
+                <div>
+                    <div class="spec_title">Strict 1-Box & Anti-Driver</div>
+                    <div class="spec_desc">1 ПК в сутки на аккаунт, запрет вторых окон</div>
+                </div>
+            </div>
+        </div>
+        <div class="spec_card">
+            <div class="spec_card_inner">
+                <div class="spec_icon">💎</div>
+                <div>
+                    <div class="spec_title">100% No Pay-to-Win</div>
+                    <div class="spec_desc">Честный классический хардкор без доната</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN FEATURES CARDS GRID -->
+    <section class="legacy_features_section">
+        <div class="features_section_head">
+            <h2>Ключевые особенности Legacy x1</h2>
+            <p>Почему наш сервер — это лучший выбор для ценителей настоящего хардкора Lineage 2</p>
+        </div>
+
+        <div class="legacy_cards_grid">
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">🧙‍♂️</div>
+                    <h3 class="card_title">Живая социализация и саппорты</h3>
+                    <p class="card_desc">
+                        Благодаря строгому запрету второго окна (Single-Box), персонажи поддержки (Prophet, Elven Elder, Shillien Elder) — это желанные и уважаемые живые игроки в любой группе.
+                    </p>
+                </div>
+                <a href="../server-features/legacy-server-features/index.html#sec-party" class="card_link_more">
+                    <span>Подробнее о группах</span> <span>→</span>
+                </a>
+            </div>
+
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">⚡</div>
+                    <h3 class="card_title">Система выносливости (Stamina)</h3>
+                    <p class="card_desc">
+                        Защита работающих игроков от 24/7 фарм-марафонов. Суточный запас энергии расходуется только на мобах, сохраняя здоровую конкуренцию в гонке уровней.
+                    </p>
+                </div>
+                <a href="../server-features/legacy-server-features/index.html#sec-stamina" class="card_link_more">
+                    <span>Подробнее о Stamina</span> <span>→</span>
+                </a>
+            </div>
+
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">🔮</div>
+                    <h3 class="card_title">Строгие боевые формулы C1</h3>
+                    <p class="card_desc">
+                        Никаких магических критов (шанс 0%), ровно 20 слотов под баффы, отсутствие полоски CP и оверхита. Чистый тактический бой на истощение.
+                    </p>
+                </div>
+                <a href="../server-features/legacy-server-features/index.html#sec-mechanics" class="card_link_more">
+                    <span>Подробнее о боевой системе</span> <span>→</span>
+                </a>
+            </div>
+
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">🏝️</div>
+                    <h3 class="card_title">Talking Island & Elven Ruins</h3>
+                    <p class="card_desc">
+                        Исследуйте Говорящий Остров и легендарное подземелье Elven Ruins с полной поддержкой трехмерной физики и прямой видимости Shnok 3D GeoEngine.
+                    </p>
+                </div>
+                <a href="../server-features/legacy-server-features/index.html#sec-world" class="card_link_more">
+                    <span>Подробнее о мире</span> <span>→</span>
+                </a>
+            </div>
+
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">⛏️</div>
+                    <h3 class="card_title">Монополия гномов и экономика</h3>
+                    <p class="card_desc">
+                        Соски и броня крафтятся исключительно Warsmith, а ресурсы добываются Bounty Hunter. Цены и ассортимент магазинов соответствуют эталону C1 buylists.
+                    </p>
+                </div>
+                <a href="../server-features/legacy-server-features/index.html#sec-economy" class="card_link_more">
+                    <span>Подробнее об экономике</span> <span>→</span>
+                </a>
+            </div>
+
+            <div class="feature_glow_card">
+                <div>
+                    <div class="card_top_icon">🛡️</div>
+                    <h3 class="card_title">Anti-Driver System</h3>
+                    <p class="card_desc">
+                        Ограничение шеринга аккаунтов (макс. 1 ПК в день и 3 ПК в месяц) предотвращает передачу учетных записей драйверам ради круглосуточного преимущества.
+                    </p>
+                </div>
+                <a href="../server-features/legacy-server-features/index.html#sec-antiabuse" class="card_link_more">
+                    <span>Подробнее о защите</span> <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+    <div class="footer_content" id="content_footer">
+        <div class="full_wrap">
+            <div class="footer_wrap">
+                <div class="left_footer">
+                    <a href="../index.html" aria-label="Home"><div class="logo_footer"></div></a>
+                    <div class="text_12_medium_footer txt_brown4">© 2026 Game Project Reborn</div>
+                </div>
+                <div class="center_footer">
+                    <div class="content_link_footer_desktop">
+                        <div class="text_12_bold_menu">Навигация:</div>
+                        <a href="../index.html" class="secondary_link_small">Главная страница</a>
+                        <a href="../L2.launcher.7z" download="L2.launcher.7z" class="secondary_link_small" style="color: #FAC459; font-weight: 600;">Скачать лаунчер (L2.launcher.7z)</a>
+                        <a href="../server-features/legacy-server-features/index.html" class="secondary_link_small">Server Features</a>
+                        <a href="../index.html#news" class="secondary_link_small">Новости</a>
+                        <a href="https://discord.gg/l2reborn" target="_blank" class="secondary_link_small">Сообщество Discord</a>
+                        <a href="https://lineage2wiki.org/" target="_blank" class="secondary_link_small">База знаний Wiki</a>
+                        <div class="line_v_15_footer"></div>
+                        <div class="text_12_bold_menu">Серверы:</div>
+                        <a href="index.html" class="secondary_link_small" style="color: #FAC459; font-weight: 700;">Legacy Overview</a><a href="../server-features/legacy-server-features/index.html" class="secondary_link_small" style="color: #FAC459; font-weight: 700;">Legacy Features</a>
+                        <a href="../origins/index.html" class="secondary_link_small">Origins Overview</a><a href="../server-features/origins-server-features/index.html" class="secondary_link_small">Origins Features</a>
+                        <a href="../index.html" class="secondary_link_small">Essence Guardian</a>
+                        <a href="../index.html" class="secondary_link_small">Signature x1</a>
+                        <a href="../index.html" class="secondary_link_small">Eternal x10</a>
+                        <a href="../index.html" class="secondary_link_small">Forever</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

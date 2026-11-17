@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Features - Legacy (Chronicle 1: Harbingers of War) | Lineage 2 Reborn</title>
+    
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon-16x16.png">
+    <link rel="manifest" href="../../site.webmanifest">
+    <meta name="theme-color" content="#100E0D">
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="../../css/reborn_style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/reborn_style2_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/reborn_style_mobile.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../css/public.css" type="text/css" media="all">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #100E0D;
+            color: #CCC3BF;
+            font-family: 'Onest', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .legacy_gold {
+            color: #FAC459 !important;
+        }
+        .legacy_amber {
+            color: #F59E0B !important;
+        }
+        .legacy_bronze {
+            color: #D4AC0D !important;
+        }
+        .legacy_cyan {
+            color: #64C7E8 !important;
+        }
+        .legacy_badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .badge_gold {
+            background: rgba(250, 196, 89, 0.15);
+            border: 1px solid rgba(250, 196, 89, 0.45);
+            color: #FAC459;
+        }
+        .badge_amber {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.45);
+            color: #F59E0B;
+        }
+        .badge_green {
+            background: rgba(72, 187, 120, 0.15);
+            border: 1px solid rgba(72, 187, 120, 0.45);
+            color: #68D391;
+        }
+        .badge_purple {
+            background: rgba(167, 139, 250, 0.15);
+            border: 1px solid rgba(167, 139, 250, 0.45);
+            color: #C4B5FD;
+        }
+        .badge_red {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.45);
+            color: #F87171;
+        }
+
+        /* Banner Hero Customization */
+        .legacy_hero_banner {
+            position: relative;
+            width: 100%;
+            max-width: 1360px;
+            margin: 20px auto 40px auto;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #261D15 0%, #1A1410 50%, #0F0D0C 100%);
+            border: 1px solid rgba(250, 196, 89, 0.35);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.75), 0 0 30px rgba(250, 196, 89, 0.12);
+            overflow: hidden;
+            display: flex;
+            padding: 44px;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .legacy_hero_banner::after {
+            content: '';
+            position: absolute;
+            right: 20px;
+            top: 0;
+            bottom: 0;
+            width: 45%;
+            background-image: url('../../images/legacy1.png');
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: contain;
+            opacity: 0.32;
+            pointer-events: none;
+        }
+        .hero_text_left {
+            position: relative;
+            z-index: 2;
+            max-width: 740px;
+        }
+        .hero_tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .hero_title {
+            font-size: 38px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .hero_desc {
+            font-size: 15px;
+            line-height: 1.65;
+            color: #B8ADA8;
+            margin-bottom: 24px;
+        }
+        .hero_stats_grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .hero_stat_item {
+            background: rgba(38, 30, 24, 0.88);
+            border: 1px solid #42352B;
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .hero_stat_label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #8C7B72;
+            font-weight: 600;
+        }
+        .hero_stat_val {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FAC459;
+        }
+
+        /* Nav Pills for Servers */
+        .feat_servers_nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 1360px;
+            margin: 0 auto 20px auto;
+            border-bottom: 1px solid #26211E;
+            padding-bottom: 16px;
+            overflow-x: auto;
+        }
+        .feat_server_tab {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #7D6B62;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #181513;
+            border: 1px solid #26211E;
+            white-space: nowrap;
+        }
+        .feat_server_tab:hover {
+            color: #CCC3BF;
+            border-color: #42352B;
+        }
+        .feat_server_tab.active {
+            background: linear-gradient(135deg, rgba(250, 196, 89, 0.18) 0%, rgba(46, 36, 26, 0.45) 100%);
+            border: 1px solid #FAC459;
+            color: #FAC459;
+            box-shadow: 0 0 16px rgba(250, 196, 89, 0.22);
+        }
+
+        /* Main 2-Column Container */
+        .feat_container {
+            display: flex;
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            padding: 0 20px 80px 20px;
+            box-sizing: border-box;
+            gap: 36px;
+            align-items: flex-start;
+        }
+
+        /* Sticky Sidebar */
+        .feat_sidebar {
+            width: 290px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #181412;
+            border: 1px solid #2D2520;
+            border-radius: 12px;
+            padding: 16px 12px;
+            box-sizing: border-box;
+        }
+        .sidebar_heading {
+            font-size: 11px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #FAC459;
+            padding: 6px 12px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #26211E;
+            margin-bottom: 4px;
+        }
+        .sidebar_link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            font-size: 13px;
+            color: #8C7B72;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        .sidebar_link:hover {
+            color: #FFFFFF;
+            background: #231C18;
+        }
+        .sidebar_link.active {
+            color: #FAC459;
+            background: rgba(250, 196, 89, 0.12);
+            font-weight: 600;
+            border-left: 3px solid #FAC459;
+        }
+        .sidebar_icon {
+            font-size: 15px;
+            width: 18px;
+            text-align: center;
+        }
+
+        /* Content Area */
+        .feat_content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Feature Card Section */
+        .feat_section_card {
+            background: #1C1714;
+            border: 1px solid #2E2621;
+            border-radius: 14px;
+            padding: 30px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            scroll-margin-top: 100px;
+            position: relative;
+        }
+        .feat_section_card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 24px;
+            bottom: 24px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: #FAC459;
+        }
+        .feat_card_header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #2D2520;
+        }
+        .feat_card_title_wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .feat_card_icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: rgba(250, 196, 89, 0.12);
+            border: 1px solid rgba(250, 196, 89, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #FAC459;
+        }
+        .feat_card_title {
+            font-size: 21px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin: 0;
+        }
+        .feat_card_subtitle {
+            font-size: 13px;
+            color: #8C7B72;
+            margin: 2px 0 0 0;
+        }
+
+        /* Information Callout Box */
+        .feat_callout {
+            background: #231C13;
+            border-left: 3px solid #FAC459;
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 18px 0;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #D6C29E;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .feat_callout.cyan {
+            background: #151A1D;
+            border-left-color: #64C7E8;
+            color: #B5C6CC;
+        }
+        .feat_callout.red {
+            background: #221414;
+            border-left-color: #EF4444;
+            color: #E2A8A8;
+        }
+
+        /* 2-Column Info Grid inside Card */
+        .feat_grid_2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 16px;
+        }
+        @media (max-width: 900px) {
+            .feat_grid_2col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Detail Tables */
+        .feat_table_wrap {
+            border: 1px solid #332A24;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #14100E;
+        }
+        .feat_table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .feat_table th {
+            background: #231D19;
+            color: #FAC459;
+            font-weight: 600;
+            text-align: left;
+            padding: 11px 16px;
+            font-size: 12px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #332A24;
+        }
+        .feat_table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #231D19;
+            color: #CCC3BF;
+        }
+        .feat_table tr:last-child td {
+            border-bottom: none;
+        }
+        .feat_table tr:nth-child(even) {
+            background: #1A1513;
+        }
+        .feat_table tr:hover {
+            background: #261F1A;
+        }
+        .feat_table .val_highlight {
+            font-weight: 700;
+            color: #FAC459;
+            text-align: right;
+        }
+        .feat_table .val_cyan {
+            font-weight: 700;
+            color: #64C7E8;
+            text-align: right;
+        }
+        .feat_table .val_green {
+            font-weight: 700;
+            color: #68D391;
+            text-align: right;
+        }
+
+        /* Key-Value Rows */
+        .feat_kv_list {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #332A24;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #14100E;
+        }
+        .feat_kv_row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 16px;
+            border-bottom: 1px solid #231D19;
+            font-size: 13px;
+        }
+        .feat_kv_row:nth-child(even) {
+            background: #1A1513;
+        }
+        .feat_kv_row:last-child {
+            border-bottom: none;
+        }
+        .feat_kv_label {
+            color: #CCC3BF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feat_kv_value {
+            font-weight: 600;
+            color: #FAC459;
+            text-align: right;
+        }
+
+        /* Feature Pillars Grid */
+        .pillar_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 18px 0;
+        }
+        .pillar_item {
+            background: #15110F;
+            border: 1px solid #2D241E;
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+        .pillar_item:hover {
+            border-color: #FAC459;
+            transform: translateY(-2px);
+        }
+        .pillar_title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #FAC459;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pillar_text {
+            font-size: 13px;
+            color: #A39690;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Commands Grid */
+        .cmd_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .cmd_item {
+            background: #14100E;
+            border: 1px solid #332A24;
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: border-color 0.2s;
+        }
+        .cmd_item:hover {
+            border-color: #FAC459;
+        }
+        .cmd_name {
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: #FAC459;
+        }
+        .cmd_desc {
+            font-size: 12px;
+            color: #A39690;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 1024px) {
+            .feat_container {
+                flex-direction: column;
+            }
+            .feat_sidebar {
+                width: 100%;
+                position: static;
+                top: auto;
+            }
+            .hero_stats_grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .legacy_hero_banner {
+                padding: 24px;
+            }
+            .legacy_hero_banner::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header role="navigation">
+    <div class="bk_header" id="header_content">
+        <div class="full_wrap">
+            <div class="header_wrap">
+                <div class="top_menu_left">
+                    <a href="../../index.html" class="secondary_link_small" aria-label="Home">
+                        <div class="logo_reborn"></div>
+                    </a>
+                    <div class="line_v_20"></div>
+
+                    <a href="../../index.html" class="top_menu_content" style="text-decoration: none; color: inherit;">
+                        <div class="logo_servers"></div>
+                        Servers
+                    </a>
+
+                    <a class="btn_menu_top" href="https://discord.gg/l2reborn" target="_blank" aria-label="Discord">
+                        <div class="logo_community"></div>
+                        Community
+                    </a>
+                    <a href="../../index.html#news" aria-label="News">
+                        <div class="btn_menu_top">
+                            <div class="logo_news"></div>
+                            News
+                        </div>
+                    </a>
+                    <a class="btn_menu_top" href="https://lineage2wiki.org/" target="_blank" aria-label="Wiki">
+                        <div class="logo_wiki"></div>
+                        Wiki
+                    </a>
+                </div>
+
+                <div class="top_menu_right" style="display: flex; gap: 12px; align-items: center;">
+                    <a class="btn_download" href="../../L2.launcher.7z" download="L2.launcher.7z" style="text-decoration: none;" aria-label="Скачать лаунчер">
+                        <div class="icon_dld"></div>
+                        Скачать лаунчер
+                    </a>
+                    <div class="wrap_btn_control">
+                        <a href="../../index.html" class="btn_control_panel">
+                            <div class="icon_user"></div>
+                            Главная сайта
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main style="padding-top: 90px;">
+
+    <!-- SERVER TABS SELECTOR -->
+    <div class="feat_servers_nav">
+        <a href="#top" class="feat_server_tab active">
+            <span>Legacy</span>
+            <span class="legacy_badge badge_gold">x1 C1</span>
+        </a>
+        <a href="../origins-server-features/index.html" class="feat_server_tab">
+            <span>Origins</span>
+            <span class="legacy_badge badge_purple">x1 High Five</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Essence Guardian</span>
+            <span class="legacy_badge badge_purple">Essence</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Signature</span>
+            <span class="legacy_badge badge_gold">x1 IL</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Eternal</span>
+            <span class="legacy_badge badge_gold">x10 IL</span>
+        </a>
+        <a href="../../index.html" class="feat_server_tab">
+            <span>Forever</span>
+            <span class="legacy_badge badge_green">HF</span>
+        </a>
+    </div>
+
+    <!-- HERO BANNER -->
+    <div class="legacy_hero_banner" id="top">
+        <div class="hero_text_left">
+            <div class="hero_tags">
+                <span class="legacy_badge badge_gold">Chronicle 1 PTS</span>
+                <span class="legacy_badge badge_amber">Hardcore x1.0</span>
+                <span class="legacy_badge badge_green">100% No Pay-to-Win</span>
+                <span class="legacy_badge badge_purple">L2-Unity 3D Engine</span>
+                <span class="legacy_badge badge_red">1-Box HWID Lock</span>
+            </div>
+            <h1 class="hero_title">
+                <img src="../../images/legacy.svg" width="36" height="36" alt="Legacy" style="vertical-align: middle;">
+                Legacy x1 — Chronicle 1
+            </h1>
+            <p class="hero_desc">
+                Возвращение к золотой эре Lineage 2 — <strong>Chronicle 1: Harbingers of War</strong>. Аутентичные параметры мобов и скиллов C1 PTS (Master Toma), строгие боевые формулы NCSoft 2004 года, инновационный 3D-клиент <strong>L2-Unity</strong> и высокоточный гео-движок <strong>Shnok 3D GeoEngine</strong>. Живой мир без оконных бафферов, драйверов и доната, влияющего на баланс.
+            </p>
+            <div class="hero_stats_grid">
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Хроники</span>
+                    <span class="hero_stat_val">Chronicle 1</span>
+                </div>
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Рейты</span>
+                    <span class="hero_stat_val">x1.00 Pure</span>
+                </div>
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Платформа</span>
+                    <span class="hero_stat_val">L2-Unity 3D</span>
+                </div>
+                <div class="hero_stat_item">
+                    <span class="hero_stat_label">Макс. уровень</span>
+                    <span class="hero_stat_val">60 lvl (C1 Cap)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TWO-COLUMN LAYOUT -->
+    <div class="feat_container">
+
+        <!-- SIDEBAR -->
+        <aside class="feat_sidebar">
+            <div class="sidebar_heading">Оглавление Legacy</div>
+            <a href="#sec-general" class="sidebar_link active">
+                <span class="sidebar_icon">📊</span>
+                <span>Общие сведения и рейты</span>
+            </a>
+            <a href="#sec-antiabuse" class="sidebar_link">
+                <span class="sidebar_icon">🛡️</span>
+                <span>Anti-Driver & 1-Box</span>
+            </a>
+            <a href="#sec-stamina" class="sidebar_link">
+                <span class="sidebar_icon">⚡</span>
+                <span>Система Усталости (Stamina)</span>
+            </a>
+            <a href="#sec-mechanics" class="sidebar_link">
+                <span class="sidebar_icon">⚔️</span>
+                <span>Боевая система и C1 PTS</span>
+            </a>
+            <a href="#sec-progression" class="sidebar_link">
+                <span class="sidebar_icon">🧙</span>
+                <span>Классы, профессии и скиллы</span>
+            </a>
+            <a href="#sec-economy" class="sidebar_link">
+                <span class="sidebar_icon">🎒</span>
+                <span>Экономика, грейды и крафт</span>
+            </a>
+            <a href="#sec-world" class="sidebar_link">
+                <span class="sidebar_icon">🗺️</span>
+                <span>Talking Island и 3D GeoEngine</span>
+            </a>
+            <a href="#sec-party" class="sidebar_link">
+                <span class="sidebar_icon">👥</span>
+                <span>Партийная игра и саппорты</span>
+            </a>
+            <a href="#sec-death" class="sidebar_link">
+                <span class="sidebar_icon">💀</span>
+                <span>Штрафы смерти и Karma (PK)</span>
+            </a>
+            <a href="#sec-commands" class="sidebar_link">
+                <span class="sidebar_icon">💬</span>
+                <span>Игровые команды (.menu, /loc)</span>
+            </a>
+        </aside>
+
+        <!-- CONTENT -->
+        <div class="feat_content">
+
+            <!-- 1. GENERAL & RATES -->
+            <section class="feat_section_card" id="sec-general">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">📊</div>
+                        <div>
+                            <h2 class="feat_card_title">Общие сведения и базовые рейты</h2>
+                            <p class="feat_card_subtitle">Архитектура платформы, клиентское окружение и базовые множители</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_gold">x1.00 Hardcore PTS</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    Сервер <strong>Legacy x1</strong> спроектирован как долгосрочное путешествие от истоков Lineage 2 с поэтапным развитием хроник без серверных вайпов. Мы отказались от стандартного устаревшего клиента в пользу специально разработанного трехмерного движка <strong>L2-Unity</strong> и высокоскоростного сервера на Java с кастомной физикой геодаты <strong>Shnok 3D GeoEngine</strong>. Все игровые параметры монстров, скиллов, предметов и спавна сконвертированы напрямую из оригинальных скриптов C1 PTS (Master Toma).
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Параметр платформы</th>
+                                    <th style="text-align: right;">Значение</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Текущие хроники</td>
+                                    <td class="val_highlight">Chronicle 1: Harbingers of War</td>
+                                </tr>
+                                <tr>
+                                    <td>Игровой клиент</td>
+                                    <td class="val_cyan">L2-Unity 3D Engine (Modern Graphics)</td>
+                                </tr>
+                                <tr>
+                                    <td>Гео-движок</td>
+                                    <td class="val_cyan">Shnok 3D GeoEngine (Векторная физика)</td>
+                                </tr>
+                                <tr>
+                                    <td>Максимальный уровень</td>
+                                    <td class="val_highlight">60 уровень (C1 Cap)</td>
+                                </tr>
+                                <tr>
+                                    <td>Ограничение окон (Dualbox)</td>
+                                    <td class="val_highlight" style="color: #F87171 !important;">Строго 1 окно на ПК (HWID Lock)</td>
+                                </tr>
+                                <tr>
+                                    <td>Шеринг аккаунтов (Anti-Driver)</td>
+                                    <td class="val_highlight">1 ПК в день / макс. 3 в месяц</td>
+                                </tr>
+                                <tr>
+                                    <td>Серверные вайпы</td>
+                                    <td class="val_green">Отсутствуют (Progressive Server)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Игровой рейт</th>
+                                    <th style="text-align: right;">Множитель</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rate EXP (Опыт за монстров)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate SP (Очки умений)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Adena (Дроп адены)</td>
+                                    <td class="val_highlight">x1.00 (Формула C1 PTS)</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Drop Items (Шанс/Кол-во предметов)</td>
+                                    <td class="val_highlight">x1.00 (Дроп-листы C1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Spoil (Спойл гномов)</td>
+                                    <td class="val_highlight">x1.00 (Спойл-листы C1)</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate RaidBoss EXP / SP / Drop</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Rate Quests (Награда за задания)</td>
+                                    <td class="val_highlight">x1.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Party EXP Bonus (Опыт в группе)</td>
+                                    <td class="val_green">Эталонный C1 Party Bonus</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="feat_callout">
+                    <span>👑</span>
+                    <div>
+                        <strong>Принцип честной игры (Pure 100% No Pay-to-Win):</strong> В игровом магазине полностью отсутствуют предметы, влияющие на характеристики персонажа, покупка уровней, свитков заточки, готовой экипировки, сосок или игрового золота. Доступны исключительно визуальные аксессуары (шапки) и клубная подписка (Club Membership), не нарушающая баланс между игроками.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. ANTI-ABUSE & 1-BOX -->
+            <section class="feat_section_card" id="sec-antiabuse">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🛡️</div>
+                        <div>
+                            <h2 class="feat_card_title">Честная игра, Anti-Driver и Одно Окно</h2>
+                            <p class="feat_card_subtitle">Защита от драйверов, макрос-ферм и искусственного преимущества</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_red">Strict Anti-Driver</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    Одной из главных проблем классических низкорейтовых серверов всегда являлись «драйверы» — наемные игроки, передающие учетную запись по цепочке ради круглосуточного фарма персонажа 24/7. В <strong>Legacy x1</strong> реализован уникальный комплекс правил Reborn, уравнивающий шансы обычных игроков и организованных кланов:
+                </p>
+
+                <div class="pillar_grid">
+                    <div class="pillar_item">
+                        <div class="pillar_title">🚫 Ограничение шеринга (1 ПК в сутки)</div>
+                        <p class="pillar_text">
+                            Игровой аккаунт может быть авторизован <strong>только с одного уникального устройства (HWID) в течение суток</strong>. За один календарный месяц аккаунт разрешено запускать не более чем с 3 различных устройств. Ежесуточный сброс привязки происходит в <strong>06:30 UTC</strong>.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">💻 Строго 1 окно (True Single-Box)</div>
+                        <p class="pillar_text">
+                            Запрещен параллельный запуск двух и более игровых клиентов одним человеком. Никаких «оконных ПП за спиной» — каждый персонаж в группе должен быть живым человеком, управляющим своим героем вручную.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">⛔ Запрет продажи баффов и релогов</div>
+                        <p class="pillar_text">
+                            Запрещена организация платных стационарных точек продажи баффов в городах. Система Relog Buff Prevention предотвращает бафф самого себя через мгновенный перезаход на саппорта.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feat_callout red">
+                    <span>⚠️</span>
+                    <div>
+                        <strong>Аппаратный мониторинг HWID:</strong> Попытки обхода правила одного окна через виртуальные машины (VMWare, VirtualBox), VPN-спуфинг или удаленный рабочий стол караются перманентной блокировкой всех связанных игровых учетных записей без права апелляции.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. STAMINA SYSTEM -->
+            <section class="feat_section_card" id="sec-stamina">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">⚡</div>
+                        <div>
+                            <h2 class="feat_card_title">Система Выносливости (Stamina System)</h2>
+                            <p class="feat_card_subtitle">Здоровый баланс между активными фармерами и игроками со стандартным прайм-таймом</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_amber">Daily Energy Pool</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    Система <strong>Stamina</strong> создана для того, чтобы защитить сервер от катастрофического разрыва между «ноулайферами», играющими по 18 часов в сутки, и работающими людьми, которые уделяют игре 3–4 часа вечером. Она не запрещает вам находиться в игре, но бережет честную конкуренцию:
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Суточный запас выносливости</span>
+                            <span class="feat_kv_value">100% энергии (Полная шкала)</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Расход очков Stamina</span>
+                            <span class="feat_kv_value">Только при убийстве монстров</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Период бодрости (Fresh State)</span>
+                            <span class="feat_kv_value legacy_gold">100% EXP / SP / Adena / Drop</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Состояние усталости (Exhaustion)</span>
+                            <span class="feat_kv_value" style="color: #F87171 !important;">Плавное снижение рейтов фарма</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Ежесуточный сброс шкалы</span>
+                            <span class="feat_kv_value">06:30 UTC (Автоматически)</span>
+                        </div>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Игровая активность</th>
+                                    <th style="text-align: right;">Влияние Stamina</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Гринд обычных монстров в мире</td>
+                                    <td class="val_highlight">Расходует шкалу энергии</td>
+                                </tr>
+                                <tr>
+                                    <td>Прохождение квестов и сюжетных заданий</td>
+                                    <td class="val_green">Без штрафа к наградам</td>
+                                </tr>
+                                <tr>
+                                    <td>PvP, дуэли, клановые войны, осады</td>
+                                    <td class="val_green">Полностью не ограничено</td>
+                                </tr>
+                                <tr>
+                                    <td>Рыночная торговля и общение в чате</td>
+                                    <td class="val_green">Доступно 24/7</td>
+                                </tr>
+                                <tr>
+                                    <td>Команда проверки статуса в чате</td>
+                                    <td class="val_cyan">.stamina</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="feat_callout">
+                    <span>💡</span>
+                    <div>
+                        <strong>Как это работает на практике:</strong> Обычный игрок, проводящий в игре комфортные 3–5 часов, успевает полностью реализовать ежедневную энергию с максимальной отдачей и не отстает от лидеров гонки. Хардкорные игроки после расхода энергии могут переключиться на помощь клану, прокачку ремесел или исследование мира.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. COMBAT & C1 PTS MECHANICS -->
+            <section class="feat_section_card" id="sec-mechanics">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">⚔️</div>
+                        <div>
+                            <h2 class="feat_card_title">Боевая система и стандарты C1 PTS</h2>
+                            <p class="feat_card_subtitle">Точные боевые формулы NCSoft 2004 года без искажений поздними хрониками</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_gold">Pure C1 Formulas</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    Ядро боевых формул в <code>Formulas.java</code> нашего сервера прошло полную калибровку под стандарты C1 PTS. Мы намеренно отключили все механики Interlude и High Five, нарушавшие классический баланс:
+                </p>
+
+                <div class="pillar_grid">
+                    <div class="pillar_item">
+                        <div class="pillar_title">🔮 Полное отсутствие маг. критов</div>
+                        <p class="pillar_text">
+                            В Chronicle 1 у боевых заклинаний <strong>не было критических ударов</strong> (шанс маг. крита = 0%). Урон магов стабилен, надежен и предсказуем. Никаких внезапных x4 ваншотов из более поздних дополнений!
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">🛡️ Лимит в 20 слотов под баффы</div>
+                        <p class="pillar_text">
+                            Никаких 24–36 слотов, Divine Inspiration или отдельных линеек сонгов/денсов. Ровно 20 слотов заставляют тщательно подбирать баффы под текущую ситуацию и состав группы.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">⚔️ Отсутствие CP и Overhit</div>
+                        <p class="pillar_text">
+                            В C1 отсутствует система Combat Power (CP). Все PvP-сражения идут напрямую по шкале здоровья (HP) и маны (MP), превращая каждую дуэль в тактическую битву на истощение. Механика оверхита отсутствует.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">📐 Эталонные таблицы pc_parameter</div>
+                        <p class="pillar_text">
+                            Модификаторы характеристик <code>STR</code>, <code>DEX</code>, <code>CON</code>, <code>INT</code>, <code>WIT</code>, <code>MEN</code> выверены по файлу <code>pc_parameter.txt</code> C1 PTS без накруток критрейта и скорости атаки.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feat_table_wrap">
+                    <table class="feat_table">
+                        <thead>
+                            <tr>
+                                <th>Боевой параметр</th>
+                                <th>Реализация в Chronicle 1</th>
+                                <th style="text-align: right;">Сравнение с Interlude/H5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Магический критический урон</td>
+                                <td class="val_highlight">Отключен (Шанс 0%)</td>
+                                <td class="val_cyan">В IL/H5: x3..x4 урон от WIT</td>
+                            </tr>
+                            <tr>
+                                <td>Базовые слоты баффов</td>
+                                <td class="val_highlight">Строго 20 слотов</td>
+                                <td class="val_cyan">В IL/H5: до 36 слотов с песнями</td>
+                            </tr>
+                            <tr>
+                                <td>Полоса Combat Points (CP)</td>
+                                <td class="val_highlight">Отсутствует (Бой по HP)</td>
+                                <td class="val_cyan">В IL/H5: CP-банки и отдельный бар</td>
+                            </tr>
+                            <tr>
+                                <td>Система Overhit</td>
+                                <td class="val_highlight">Отсутствует</td>
+                                <td class="val_cyan">В IL/H5: Бонус опыта за оверхит</td>
+                            </tr>
+                            <tr>
+                                <td>Скорость каста и отката</td>
+                                <td class="val_highlight">Оригинальный калибр C1 PTS</td>
+                                <td class="val_cyan">Высокая динамика, завышенный Cast Speed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. CLASSES & SKILLS -->
+            <section class="feat_section_card" id="sec-progression">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🧙</div>
+                        <div>
+                            <h2 class="feat_card_title">Классы, профессии и древо умений</h2>
+                            <p class="feat_card_subtitle">31 специализация 2-й профессии и честное изучение скиллов по книгам</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_gold">Level 60 Cap</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    В Chronicle 1 максимальный уровень ограничен <strong>60-м уровнем</strong>. Персонаж начинает путь учеником, проходит 1-ю смену профессии на 20-м уровне и 2-ю смену профессии на 40-м уровне:
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Раса</th>
+                                    <th>Доступные классы 2-й профессии (40 lvl)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Люди (Human)</strong></td>
+                                    <td>Gladiator, Warlord, Paladin, Dark Avenger, Treasure Hunter, Hawkeye, Sorcerer, Necromancer, Warlock, Bishop, Prophet</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Эльфы (Elven)</strong></td>
+                                    <td>Temple Knight, Swordsinger, Plains Walker, Silver Ranger, Spellsinger, Elemental Summoner, Elven Elder</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Темные Эльфы (Dark Elf)</strong></td>
+                                    <td>Shillien Knight, Bladedancer, Abyss Walker, Phantom Ranger, Spellhowler, Phantom Summoner, Shillien Elder</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Орки (Orc)</strong></td>
+                                    <td>Destroyer, Tyrant, Overlord, Warcryer</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Гномы (Dwarf)</strong></td>
+                                    <td>Bounty Hunter (Спойлер), Warsmith (Кузнец)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Изучение скиллов</span>
+                            <span class="feat_kv_value">Строго у гильдийных мастеров</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Стоимость умений</span>
+                            <span class="feat_kv_value">Оригинальные очки SP из skillacquire.txt</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Книги заклинаний (Spellbooks)</span>
+                            <span class="feat_kv_value legacy_gold">Обязательны для магии и баффов</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Амулеты и свитки</span>
+                            <span class="feat_kv_value">Требуются оркам и призывателям</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Авто-изучение базовых навыков</span>
+                            <span class="feat_kv_value val_green">Базовое оружие и броня (cost=0)</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Сабклассы и Дворянство</span>
+                            <span class="feat_kv_value">Отсутствуют в C1 (Дорожная карта хроник)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feat_callout">
+                    <span>📖</span>
+                    <div>
+                        <strong>Ценность книг заклинаний:</strong> Книги заклинаний и амулеты выбиваются исключительно из монстров по оригинальным таблицам дропа C1. Свиток популярного баффа (например, <em>Haste</em> или <em>Wind Walk</em>) или атакующего заклинания — это ценнейшая добыча, формирующая живой рынок между игроками.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. ECONOMY & CRAFTING -->
+            <section class="feat_section_card" id="sec-economy">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🎒</div>
+                        <div>
+                            <h2 class="feat_card_title">Экономика, грейды и крафт</h2>
+                            <p class="feat_card_subtitle">Живой рынок, монополия гномов и престиж экипировки B-Grade</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_gold">Top: B-Grade</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    В мире Chronicle 1 адена обладает колоссальной ценностью, а каждый предмет создается трудом реальных игроков. Здесь нет бесконечных запасов готовой брони в бакалейных лавках:
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Грейд снаряжения</th>
+                                    <th>Уровни</th>
+                                    <th style="text-align: right;">Статус в Chronicle 1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>No-Grade (NG)</strong></td>
+                                    <td>1 — 19</td>
+                                    <td class="val_highlight">Стартовая экипировка и деревянные сеты</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>D-Grade</strong></td>
+                                    <td>20 — 39</td>
+                                    <td class="val_highlight">Manticore, Brigandine, Elven Mithril</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>C-Grade</strong></td>
+                                    <td>40 — 51</td>
+                                    <td class="val_highlight">Composite, Full Plate, Drake, Karmian</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>B-Grade</strong></td>
+                                    <td>52 — 60</td>
+                                    <td class="val_green">ТОП C1: Blue Wolf, Doom, Zubei, Avadon</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>A-Grade / S-Grade</strong></td>
+                                    <td>61+</td>
+                                    <td style="color: #8C7B72 !important; text-align: right;">Недоступны (Будущие хроники)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="feat_table_wrap">
+                        <table class="feat_table">
+                            <thead>
+                                <tr>
+                                    <th>Экономический аспект</th>
+                                    <th style="text-align: right;">Правило сервера</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Крафт экипировки и сосок</td>
+                                    <td class="val_highlight">Только Dwarven Craft (Warsmith)</td>
+                                </tr>
+                                <tr>
+                                    <td>Добыча кусков и рецептов</td>
+                                    <td class="val_highlight">Только Spoil (Bounty Hunter)</td>
+                                </tr>
+                                <tr>
+                                    <td>Магазинные кристаллы</td>
+                                    <td class="val_highlight" style="color: #F87171 !important;">Отключены (Кристаллизация гномами)</td>
+                                </tr>
+                                <tr>
+                                    <td>Готовые Soulshot / Blessed Spiritshot</td>
+                                    <td class="val_highlight">Крафтятся игроками вручную</td>
+                                </tr>
+                                <tr>
+                                    <td>Ассортимент городских лавок</td>
+                                    <td class="val_cyan">Строго по buylists.txt C1 PTS</td>
+                                </tr>
+                                <tr>
+                                    <td>Оффлайн-торговля</td>
+                                    <td class="val_green">Доступна команда .offline</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. TALKING ISLAND & SHNOK GEOENGINE -->
+            <section class="feat_section_card" id="sec-world">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">🗺️</div>
+                        <div>
+                            <h2 class="feat_card_title">Говорящий Остров и Shnok 3D GeoEngine</h2>
+                            <p class="feat_card_subtitle">Новое качество визуала на L2-Unity и безупречная трехмерная физика</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_purple">L2-Unity + Shnok</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    Стартовой зоной сервера является легендарный <strong>Говорящий Остров (Talking Island)</strong>, полностью перенесенный в современное графическое окружение движка <strong>L2-Unity</strong>:
+                </p>
+
+                <div class="pillar_grid">
+                    <div class="pillar_item">
+                        <div class="pillar_title">🏝️ Зона действий: Talking Island</div>
+                        <p class="pillar_text">
+                            Деревня Говорящего Острова, Cedric's Training Hall, Обелиск Победы, окрестные леса и опаснейшие катакомбы <strong>Elven Ruins</strong>. Спавн монстров восстановлен по координатам <code>npcpos.txt</code>: кельтиры, молодые кельтиры, гремлины и тренировочные NPC.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">📐 Shnok 3D GeoEngine</div>
+                        <p class="pillar_text">
+                            Революционный кастомный геометрический 3D-движок, рассчитывающий реальные трехмерные векторы движения и прямую видимость (Line of Sight) с учетом высот Unity. Никаких атак сквозь каменные стены или провалов под текстуры!
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">⚡ Современный L2-Unity Клиент</div>
+                        <p class="pillar_text">
+                            Высокая частота кадров (60–144+ FPS), мгновенный отклик на действия мыши, нативная поддержка современных разрешений мониторов 2K / 4K / Ultrawide и улучшенные эффекты освещения мира.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. PARTY & SOCIAL VALUE -->
+            <section class="feat_section_card" id="sec-party">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">👥</div>
+                        <div>
+                            <h2 class="feat_card_title">Партийная игра и социализация</h2>
+                            <p class="feat_card_subtitle">Возвращение ключевой роли саппортов, танков и живого общения</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_green">Living Community</span>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.65; color: #CCC3BF; margin-top: 0;">
+                    Благодаря правилу <strong>одного окна (Single-Box)</strong> и отсутствию бафф-магазинов, саппорты снова стали самыми желанными и уважаемыми персонажами в игре:
+                </p>
+
+                <div class="feat_grid_2col">
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Prophet, Elven Elder, Shillien Elder</span>
+                            <span class="feat_kv_value legacy_gold">Незаменимые живые члены группы</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Рыцари и Танки (Paladin, DA, TK, SK)</span>
+                            <span class="feat_kv_value">Удержание агро монстров в данжах</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Bounty Hunter и Warsmith</span>
+                            <span class="feat_kv_value">Основа материального достатка пати</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Максимальный размер группы</span>
+                            <span class="feat_kv_value">9 персонажей</span>
+                        </div>
+                    </div>
+
+                    <div class="feat_kv_list">
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Групповой бонус опыта</span>
+                            <span class="feat_kv_value val_green">Растет с каждым живым игроком</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Создание клана</span>
+                            <span class="feat_kv_value">Доступно с 10-го уровня</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Клановые войны и альянсы</span>
+                            <span class="feat_kv_value">Полноценная C1 клановая система</span>
+                        </div>
+                        <div class="feat_kv_row">
+                            <span class="feat_kv_label">Походы в подземелья</span>
+                            <span class="feat_kv_value">Elven Ruins требуют слаженной пати</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. DEATH PENALTY & KARMA -->
+            <section class="feat_section_card" id="sec-death">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">💀</div>
+                        <div>
+                            <h2 class="feat_card_title">Штрафы смерти и Karma (PK)</h2>
+                            <p class="feat_card_subtitle">Цена ошибки в бою, воскрешение и суровое правосудие для убийц</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_red">Hardcore Rules</span>
+                </div>
+
+                <div class="pillar_grid">
+                    <div class="pillar_item">
+                        <div class="pillar_title">📉 Потеря опыта при смерти (~10%)</div>
+                        <p class="pillar_text">
+                            Гибель от монстров отнимает ощутимое количество опыта, повышая ценность аккуратной игры. Воскрешение свитками и заклинаниями Cleric, Bishop, Elven Elder и Shillien Elder возвращает существенную часть утраченного опыта в зависимости от уровня скилла.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">🛡️ Защита от выпадения вещей на мобах</div>
+                        <p class="pillar_text">
+                            Для защиты долгосрочного прогресса игроков мирные персонажи (белые ники) <strong>защищены от выпадения надетой экипировки при смерти от монстров</strong>. Вы не потеряете свой меч или броню из-за внезапного лага.
+                        </p>
+                    </div>
+
+                    <div class="pillar_item">
+                        <div class="pillar_title">🩸 Суровое возмездие для PK</div>
+                        <p class="pillar_text">
+                            Убийство невиновных игроков начисляет очки Кармы. «Красные» персонажи становятся мишенью для городской стражи и других игроков, а при смерти имеют колоссальный шанс выронить надетые ценные предметы и содержимое инвентаря.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. COMMANDS -->
+            <section class="feat_section_card" id="sec-commands">
+                <div class="feat_card_header">
+                    <div class="feat_card_title_wrap">
+                        <div class="feat_card_icon">💬</div>
+                        <div>
+                            <h2 class="feat_card_title">Полезные игровые команды</h2>
+                            <p class="feat_card_subtitle">Быстрые текстовые команды чата для управления и диагностики</p>
+                        </div>
+                    </div>
+                    <span class="legacy_badge badge_gold">Chat Shortcuts</span>
+                </div>
+
+                <div class="cmd_grid">
+                    <div class="cmd_item">
+                        <span class="cmd_name">.menu</span>
+                        <span class="cmd_desc">Главное меню управления персонажем, язык интерфейса и параметры комфорта</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.stamina</span>
+                        <span class="cmd_desc">Проверка текущего запаса энергии выносливости и времени до сброса</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.whoami</span>
+                        <span class="cmd_desc">Детальный отчет о боевых параметрах, модификаторах урона и шансах защиты</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.offline</span>
+                        <span class="cmd_desc">Посадка персонажа в режим оффлайн-торговли в торговой зоне</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">.ping</span>
+                        <span class="cmd_desc">Проверка сетевой задержки (пинга) между клиентом L2-Unity и сервером</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">/loc</span>
+                        <span class="cmd_desc">Отображение точных трехмерных мировых координат персонажа (X, Y, Z)</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">/time</span>
+                        <span class="cmd_desc">Текущее серверное и игровое время суток в мире Lineage 2</span>
+                    </div>
+                    <div class="cmd_item">
+                        <span class="cmd_name">/unstuck</span>
+                        <span class="cmd_desc">Экстренная телепортация в ближайшую мирную зону при застревании (5 мин. каста)</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+    <div class="footer_content" id="content_footer">
+        <div class="full_wrap">
+            <div class="footer_wrap">
+                <div class="left_footer">
+                    <a href="../../index.html" aria-label="Home"><div class="logo_footer"></div></a>
+                    <div class="text_12_medium_footer txt_brown4">© 2026 Game Project Reborn</div>
+                </div>
+                <div class="center_footer">
+                    <div class="content_link_footer_desktop">
+                        <div class="text_12_bold_menu">Навигация:</div>
+                        <a href="../../index.html" class="secondary_link_small">Главная страница</a>
+                        <a href="../../L2.launcher.7z" download="L2.launcher.7z" class="secondary_link_small legacy_gold">Скачать лаунчер (L2.launcher.7z)</a>
+                        <a href="../../index.html#news" class="secondary_link_small">Новости</a>
+                        <a href="https://discord.gg/l2reborn" target="_blank" class="secondary_link_small">Сообщество Discord</a>
+                        <a href="https://lineage2wiki.org/" target="_blank" class="secondary_link_small">База знаний Wiki</a>
+                        <div class="line_v_15_footer"></div>
+                        <div class="text_12_bold_menu">Серверы:</div>
+                        <a href="../../legacy/index.html" class="secondary_link_small legacy_gold" style="font-weight: 700;">Legacy Overview</a><a href="index.html" class="secondary_link_small legacy_gold" style="font-weight: 700;">Legacy Features</a>
+                        <a href="../../origins/index.html" class="secondary_link_small">Origins Overview</a><a href="../origins-server-features/index.html" class="secondary_link_small">Origins Features</a>
+                        <a href="../../index.html" class="secondary_link_small">Essence Guardian</a>
+                        <a href="../../index.html" class="secondary_link_small">Signature x1</a>
+                        <a href="../../index.html" class="secondary_link_small">Eternal x10</a>
+                        <a href="../../index.html" class="secondary_link_small">Forever</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- SCRIPT: ACTIVE SIDEBAR ON SCROLL -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('.feat_section_card');
+        const navLinks = document.querySelectorAll('.sidebar_link');
+
+        window.addEventListener('scroll', function () {
+            let current = '';
+            sections.forEach(function (section) {
+                const sectionTop = section.offsetTop - 140;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(function (link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
